@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
-import { DatosPublicosComponent } from './components/datos-publicos/datos-publicos.component';
-import { RegistroComponent } from './components/registro/registro.component';
-import { FincaComponent } from './components/finca/finca.component';
+import { DatosPublicosComponent } from './components/publicdata/datos-publicos.component';
+import { RegistroComponent } from './components/signup/registro.component';
+import { FincaComponent } from './components/state/finca.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./screens/login/login.module').then((m) => m.LoginModule),
+  },
   {
     path: '',
     loadChildren: () =>

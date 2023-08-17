@@ -12,11 +12,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
-import { DatosPublicosComponent } from './components/datos-publicos/datos-publicos.component';
+import { DatosPublicosComponent } from './components/publicdata/datos-publicos.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { RegistroComponent } from './components/registro/registro.component';
-import { FincaComponent } from './components/finca/finca.component';
+import { RegistroComponent } from './components/signup/registro.component';
+import { FincaComponent } from './components/state/finca.component';
 
 @NgModule({
   declarations: [
