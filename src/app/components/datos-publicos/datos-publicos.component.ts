@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ControlFruto } from 'src/app/modelo/control-fruto';
 import { ControlClima } from 'src/app/modelo/control-clima';
 import { ControlSuelo } from 'src/app/modelo/control-suelo';
-import { DatosPublicosService } from 'src/app/services/datos-publicos/datos-publicos.service';
+import { DatosPublicosService } from 'src/app/services/datos-publicos.service';
 
 @Component({
   selector: 'app-datos-publicos',

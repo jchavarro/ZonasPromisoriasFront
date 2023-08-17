@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Productor } from 'src/app/modelo/productor';
-import { ProductorService } from 'src/app/services/productor/productor.service';
+import { ProductorService } from 'src/app/services/productor.service';
 
 @Component({
   selector: 'app-registro',
