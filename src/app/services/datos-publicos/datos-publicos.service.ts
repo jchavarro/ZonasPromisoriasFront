@@ -4,20 +4,20 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/app/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DatosPublicosService {
+  constructor(private http: HttpClient) {}
 
+  getControlSuelo(): Observable<any> {
+    return this.http.get(environment.url_base + 'api/v1/suelo/all');
+  }
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  getControlClima(): Observable<any> {
+    return this.http.get(environment.url_base + 'api/v1/clima/all');
+  }
 
-  getControlSuelo() : Observable<any> {
-    const headers = new HttpHeaders({
-      Authorization: `${localStorage.getItem('token_type')} ${localStorage.getItem('token')}`
-    });
-    console.log(headers);
-    return this.http.get(environment.url_base + 'api/v1/suelo/all', { headers });
+  getControlFruto(): Observable<any> {
+    return this.http.get(environment.url_base + 'api/v1/fruto/all');
   }
 }

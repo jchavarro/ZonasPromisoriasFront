@@ -16,6 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { DatosPublicosComponent } from './components/datos-publicos/datos-publicos.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { RegistroComponent } from './components/registro/registro.component';
+import { FincaComponent } from './components/finca/finca.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     LoginComponent,
     InicioComponent,
     DatosPublicosComponent,
+    RegistroComponent,
+    FincaComponent,
   ],
   imports: [
     MatPaginatorModule,
@@ -32,6 +36,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatCardModule,
     MatIconModule,
     MatInputModule,
+    MatFormFieldModule,
     MatButtonModule,
     FormsModule,
     BrowserModule,
