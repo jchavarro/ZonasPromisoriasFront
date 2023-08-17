@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { InicioComponent } from './components/inicio/inicio.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DatosPublicosComponent } from './components/datos-publicos/datos-publicos.component';
 import { MatTableModule } from '@angular/material/table';
@@ -23,7 +22,6 @@ import { FincaComponent } from './components/finca/finca.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    InicioComponent,
     DatosPublicosComponent,
     RegistroComponent,
     FincaComponent,
