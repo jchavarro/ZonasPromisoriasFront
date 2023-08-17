@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { DatosPublicosComponent } from './components/publicdata/datos-publicos.component';
-import { RegistroComponent } from './components/signup/registro.component';
 import { FincaComponent } from './components/state/finca.component';
 
 const routes: Routes = [
@@ -16,8 +13,18 @@ const routes: Routes = [
     loadChildren: () =>
       import('./screens/home/home.module').then((m) => m.HomeModule),
   },
-  { path: 'datos-publicos', component: DatosPublicosComponent },
-  { path: 'registro', component: RegistroComponent },
+  {
+    path: 'datos-publicos',
+    loadChildren: () =>
+      import('./screens/publicdata/publicdata.module').then(
+        (m) => m.PublicdataModule
+      ),
+  },
+  {
+    path: 'registro',
+    loadChildren: () =>
+      import('./screens/signup/signup.module').then((m) => m.SignupModule),
+  },
   { path: 'finca', component: FincaComponent },
   { path: '**', pathMatch: 'full', redirectTo: '' },
 ];

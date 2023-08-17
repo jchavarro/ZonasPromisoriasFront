@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
-import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { LoginComponent } from './login.component';
+import { SignupComponent } from './signup.component';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [SignupComponent],
   imports: [
     MatFormFieldModule,
     MatCardModule,
@@ -18,12 +19,13 @@ import { LoginComponent } from './login.component';
     MatFormFieldModule,
     MatButtonModule,
     FormsModule,
+    CommonModule,
     RouterModule.forChild([
       {
         path: '',
-        component: LoginComponent,
+        component: SignupComponent,
       },
     ]),
   ],
 })
-export class LoginModule {}
+export class SignupModule {}

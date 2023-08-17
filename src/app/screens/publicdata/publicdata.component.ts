@@ -1,17 +1,17 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ControlFruto } from 'src/app/classes/control-fruto';
 import { ControlClima } from 'src/app/classes/control-clima';
+import { ControlFruto } from 'src/app/classes/control-fruto';
 import { ControlSuelo } from 'src/app/classes/control-suelo';
 import { DatosPublicosService } from 'src/app/services/datos-publicos.service';
 
 @Component({
-  selector: 'app-datos-publicos',
-  templateUrl: './datos-publicos.component.html',
-  styleUrls: ['./datos-publicos.component.css'],
+  selector: 'app-publicdata',
+  templateUrl: './publicdata.component.html',
+  styleUrls: ['./publicdata.component.css'],
 })
-export class DatosPublicosComponent {
+export class PublicdataComponent {
   displayedColumnsSuelo: any[] = [
     'fecha',
     'medidaPh',

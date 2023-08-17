@@ -4,11 +4,11 @@ import { Productor } from 'src/app/classes/productor';
 import { ProductorService } from 'src/app/services/productor.service';
 
 @Component({
-  selector: 'app-registro',
-  templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.css'],
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css'],
 })
-export class RegistroComponent {
+export class SignupComponent {
   public productor: Productor = new Productor();
   public hide: Boolean = true;
 
