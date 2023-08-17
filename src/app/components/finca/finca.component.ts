@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Finca } from 'src/app/modelo/finca';
+import { Finca } from 'src/app/classes/finca';
 import { FincaService } from 'src/app/services/finca.service';
 
 @Component({

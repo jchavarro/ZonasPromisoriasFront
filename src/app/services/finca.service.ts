@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/app/environments/environment';
-import { Finca } from 'src/app/modelo/finca';
+import { Finca } from 'src/app/classes/finca';
+import { Productor } from 'src/app/classes/productor';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +32,10 @@ export class FincaService {
       );
   }
   addFinca(registroFinca: Finca) {
+    const nitProductor = localStorage.getItem('user_id');
+    const productor: Productor = new Productor();
+    productor.nitProductor = Number(nitProductor);
+    registroFinca.productor = productor;
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     });

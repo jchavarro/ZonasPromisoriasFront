@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/app/environments/environment';
-import { Productor } from 'src/app/modelo/productor';
+import { Productor } from 'src/app/classes/productor';
 
 @Injectable({
   providedIn: 'root',

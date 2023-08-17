@@ -1,9 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ControlFruto } from 'src/app/modelo/control-fruto';
-import { ControlClima } from 'src/app/modelo/control-clima';
-import { ControlSuelo } from 'src/app/modelo/control-suelo';
+import { ControlFruto } from 'src/app/classes/control-fruto';
+import { ControlClima } from 'src/app/classes/control-clima';
+import { ControlSuelo } from 'src/app/classes/control-suelo';
 import { DatosPublicosService } from 'src/app/services/datos-publicos.service';
 
 @Component({

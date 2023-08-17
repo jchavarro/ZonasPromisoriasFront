@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Productor } from 'src/app/modelo/productor';
+import { Productor } from 'src/app/classes/productor';
 import { ProductorService } from 'src/app/services/productor.service';
 
 @Component({
