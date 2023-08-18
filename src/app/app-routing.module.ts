@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FincaComponent } from './components/state/finca.component';
 
 const routes: Routes = [
   {
@@ -25,7 +24,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./screens/signup/signup.module').then((m) => m.SignupModule),
   },
-  { path: 'finca', component: FincaComponent },
+  {
+    path: 'finca',
+    loadChildren: () =>
+      import('./screens/state/state.module').then((m) => m.StateModule),
+  },
   { path: '**', pathMatch: 'full', redirectTo: '' },
 ];
 

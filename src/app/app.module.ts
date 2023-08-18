@@ -13,10 +13,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { FincaComponent } from './components/state/finca.component';
+import { DetailstateComponent } from './screens/detailstate/detailstate.component';
 
 @NgModule({
-  declarations: [AppComponent, FincaComponent],
+  declarations: [AppComponent, DetailstateComponent],
   imports: [
     MatPaginatorModule,
     MatTableModule,

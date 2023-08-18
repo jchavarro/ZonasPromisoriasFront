@@ -3,11 +3,11 @@ import { Finca } from 'src/app/classes/finca';
 import { FincaService } from 'src/app/services/finca.service';
 
 @Component({
-  selector: 'app-finca',
-  templateUrl: './finca.component.html',
-  styleUrls: ['./finca.component.css'],
+  selector: 'app-state',
+  templateUrl: './state.component.html',
+  styleUrls: ['./state.component.css'],
 })
-export class FincaComponent {
+export class StateComponent {
   public fincas: any = [];
   public registroFinca: Finca = new Finca();
   public srcResult: any;
@@ -33,7 +33,7 @@ export class FincaComponent {
       reader.onload = (e: any) => {
         this.srcResult = e.target.result;
       };
-
+      console.log(inputNode.files[0]);
       reader.readAsArrayBuffer(inputNode.files[0]);
     }
   }

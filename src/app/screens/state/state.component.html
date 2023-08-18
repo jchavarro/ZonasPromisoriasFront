@@ -1,7 +1,7 @@
 <div class="parent">
   <div class="addFinca">
     <mat-card>
-      <mat-card-title>Registro de usuario</mat-card-title>
+      <mat-card-title>Registro de Finca</mat-card-title>
       <table cellspacing="10">
         <tr>
           <td>
@@ -62,21 +62,13 @@
         </tr>
       </table>
       <p>
-        <mat-form-field class="obs">
+        <mat-form-field class="example-full-width">
           <mat-label>Observaciones</mat-label>
           <textarea
             matInput
             [(ngModel)]="registroFinca.observacionesFinca"
           ></textarea>
         </mat-form-field>
-        <!-- <mat-form-field class="obs">
-          <mat-label>Observaciones</mat-label>
-          <input
-            matInput
-            type="file"
-            [(ngModel)]="registroFinca.observacionesFinca"
-          />
-        </mat-form-field> -->
       </p>
       <button type="button" mat-raised-button (click)="fileInput.click()">
         Choose File
