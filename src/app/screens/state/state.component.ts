@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Finca } from 'src/app/classes/finca';
 import { FincaService } from 'src/app/services/finca.service';
 import { RegistryStateComponent } from './components/registry-state/registry-state.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-state',
@@ -14,7 +15,11 @@ export class StateComponent {
   public registroFinca: Finca = new Finca();
   public srcResult: any;
 
-  constructor(private fincaService: FincaService, private dialog: MatDialog) {}
+  constructor(
+    private fincaService: FincaService,
+    private dialog: MatDialog,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.getFincas();
@@ -56,5 +61,9 @@ export class StateComponent {
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  detailState(idCatastral: number) {
+    this.router.navigate(['detalle']);
   }
 }

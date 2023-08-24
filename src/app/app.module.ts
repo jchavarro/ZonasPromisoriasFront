@@ -13,10 +13,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { DetailstateComponent } from './screens/detailstate/detailstate.component';
 
 @NgModule({
-  declarations: [AppComponent, DetailstateComponent],
+  declarations: [AppComponent],
   imports: [
     MatPaginatorModule,
     MatTableModule,

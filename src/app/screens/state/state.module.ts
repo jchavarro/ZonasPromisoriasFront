@@ -10,9 +10,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RegistryStateComponent } from './components/registry-state/registry-state.component';
+import { DetailstateComponent } from './components/detailstate/detailstate.component';
 
 @NgModule({
-  declarations: [StateComponent, RegistryStateComponent],
+  declarations: [StateComponent, RegistryStateComponent, DetailstateComponent],
   imports: [
     MatDialogModule,
     CommonModule,
@@ -28,6 +29,10 @@ import { RegistryStateComponent } from './components/registry-state/registry-sta
       {
         path: '',
         component: StateComponent,
+      },
+      {
+        path: 'detalle',
+        component: DetailstateComponent,
       },
     ]),
   ],
