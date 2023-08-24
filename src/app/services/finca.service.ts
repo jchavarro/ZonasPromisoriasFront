@@ -10,26 +10,17 @@ import { Productor } from 'src/app/classes/productor';
 export class FincaService {
   constructor(private http: HttpClient) {}
 
-  getFincas() {
+  getFincas(): any {
     console.log(localStorage.getItem('user_id'));
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     });
-    return this.http
-      .get(
-        environment.url_base +
-          'api/v1/finca/all?idproductor=' +
-          localStorage.getItem('user_id'),
-        { headers }
-      )
-      .subscribe(
-        (res: any) => {
-          console.log(res);
-        },
-        (err: any) => {
-          console.log(err);
-        }
-      );
+    return this.http.get<Finca[]>(
+      environment.url_base +
+        'api/v1/finca/all?idproductor=' +
+        localStorage.getItem('user_id'),
+      { headers }
+    );
   }
   addFinca(registroFinca: Finca) {
     const nitProductor = localStorage.getItem('user_id');

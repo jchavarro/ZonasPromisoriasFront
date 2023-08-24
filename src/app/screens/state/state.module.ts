@@ -8,10 +8,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { RegistryStateComponent } from './components/registry-state/registry-state.component';
 
 @NgModule({
-  declarations: [StateComponent],
+  declarations: [StateComponent, RegistryStateComponent],
   imports: [
+    MatDialogModule,
     CommonModule,
     MatFormFieldModule,
     MatCardModule,

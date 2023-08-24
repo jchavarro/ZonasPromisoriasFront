@@ -1,4 +1,6 @@
+import { ViewEncapsulation } from '@angular/core';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import Swal from 'sweetalert2';
 
@@ -28,7 +30,7 @@ export class LoginComponent {
 
   ngOnInit(): void {}
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
   public onSubmit() {
     this.loginService.login(this.usuario, this.contrasena).subscribe({
@@ -41,6 +43,8 @@ export class LoginComponent {
         localStorage.setItem('token', response.access_token);
         localStorage.setItem('refresh_token', response.refresh_token);
         localStorage.setItem('token_type', response.token_type);
+        localStorage.setItem('user_id', response.user_id);
+        this.irfinca();
       },
       error: (error) => {
         const title =
@@ -54,5 +58,9 @@ export class LoginComponent {
         });
       },
     });
+  }
+
+  irfinca() {
+    this.router.navigate(['finca']);
   }
 }

@@ -1,0 +1,44 @@
+<div class="parent">
+    <mat-card>
+        <mat-card-title class="titulo">Registro de Finca</mat-card-title>
+        <section class="addFinca">
+            <mat-form-field class="example-full-width">
+                <mat-label>Identificación catastral de la finca</mat-label>
+                <input matInput placeholder="Ejemplo: 123456789" [(ngModel)]="registroFinca.idCatastral" />
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Nombre de la Finca</mat-label>
+                <input matInput placeholder="Ej. Finca la esperanza" [(ngModel)]="registroFinca.nombreFinca" />
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Hectareas de la finca</mat-label>
+                <input matInput placeholder="Ej. Perez Perez" type="number" [(ngModel)]="registroFinca.hectareasFinca" />
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Dirección de la Finca</mat-label>
+                <input matInput placeholder="calle ____ vereda ____ municipio ____ departamento ____" [(ngModel)]="registroFinca.direccionFinca" />
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Departamento y municipio del productor</mat-label>
+                <input matInput placeholder="municipio ____ departamento ____" [(ngModel)]="registroFinca.ubicacionFinca" />
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Observaciones</mat-label>
+                <textarea matInput [(ngModel)]="registroFinca.observacionesFinca"></textarea>
+            </mat-form-field>
+
+            <button type="button" mat-stroked-button color="primary" (click)="fileInput.click()">
+                Choose File
+            </button>
+            <input hidden (change)="onFileSelected()" #fileInput type="file" id="file" />
+        </section>
+        <button class="btn" mat-raised-button color="primary" (click)="addFinca()">
+            Registrar Finca
+        </button>
+    </mat-card>
+</div>
