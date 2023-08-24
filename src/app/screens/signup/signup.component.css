@@ -1,26 +1,50 @@
-.registro {
-    margin-top: 10%;
-    margin-bottom: 10%;
-    margin-left: 10%;
-    margin-right: 10%;
-    padding: 10px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px #000000;
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("/assets/fondoInicioSesion.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.card {
+    color: rgb(255, 255, 255);
+    margin: 0 1rem;
+    padding: 2rem;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.45);
+    border-radius: 12px;
+    text-align: -webkit-center;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1rem;
 }
 
 .example-full-width {
     width: 100%;
-    margin-top: 10px;
-}
-
-.parent {
-    display: grid;
-    place-items: center;
 }
 
 .bnt {
     display: flex;
     padding: auto;
     justify-content: center;
+    width: 10rem;
+}
+
+.prefijo {
+    color: black;
+}
+
+.fi {
+    color: black;
 }

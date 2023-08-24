@@ -12,6 +12,7 @@ import { SignupComponent } from './signup.component';
 @NgModule({
   declarations: [SignupComponent],
   imports: [
+    CommonModule,
     MatFormFieldModule,
     MatCardModule,
     MatIconModule,

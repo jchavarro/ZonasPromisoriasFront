@@ -63,4 +63,8 @@ export class LoginComponent {
   irfinca() {
     this.router.navigate(['finca']);
   }
+
+  irRegistro() {
+    this.router.navigate(['registro']);
+  }
 }
