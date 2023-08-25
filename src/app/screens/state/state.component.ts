@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-state',
   templateUrl: './state.component.html',
-  styleUrls: ['./state.component.css'],
+  styleUrls: ['./state.component.scss'],
 })
 export class StateComponent {
   public fincas: any[] = [];

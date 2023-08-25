@@ -1,0 +1,45 @@
+.container {
+    display: flex;
+    max-width: 100%;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+}
+
+.finca:hover {
+    transform: scale(1.01);
+}
+
+.finca {
+    max-width: 20rem;
+    min-width: 300px;
+    transition: all 0.2s;
+    position: relative;
+    background: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.btn-finca {
+    margin: 2rem 0 0 2rem;
+    width: 10rem;
+}
+
+.info-item {
+    display: flex;
+    flex-flow: column nowrap;
+    span:first-child {
+        font-weight: 500;
+        font-size: 12px;
+        color: #4F4F4F;
+    }
+}
+
+.img {
+    height: auto;
+    max-width: 100%;
+    width: 100%;
+}

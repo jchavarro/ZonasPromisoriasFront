@@ -1,11 +1,25 @@
 <button class="btn-finca" mat-stroked-button color="basic" (click)="openDialog()">Crear Finca</button>
 <div class="container">
-    <div class="card" *ngFor="let finca of fincas">
+    <ng-container *ngFor="let finca of fincas">
         <div (click)="detailState(finca.idCatastral)" class="finca" style="cursor: pointer">
-            <h1 class="card-title">{{ finca.nombreFinca }}</h1>
-            <img src="/assets/fondoRegistro.jpg" alt="">
-            <p class="card-text">Dirección: {{ finca.direccionFinca }}</p>
-            <p class="card-text">Observaciones: {{ finca.observaciones }}</p>
+            <h1>{{ finca.nombreFinca }}</h1>
+            <img class="img" src="/assets/fondoRegistro.jpg" s alt="">
+            <p class="info-item">
+                <span>
+                    Dirección
+                </span>
+                <span>
+                    {{ finca.direccionFinca }}
+                </span>
+            </p>
+            <p class="info-item">
+                <span>
+                    Observaciones
+                </span>
+                <span>
+                    {{ finca.observaciones }}
+                </span>
+            </p>
         </div>
-    </div>
+    </ng-container>
 </div>
