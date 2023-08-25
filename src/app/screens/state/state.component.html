@@ -1,6 +1,6 @@
-<button class="btn-finca" mat-stroked-button color="primary" (click)="openDialog()">Crear Finca</button>
+<button class="btn-finca" mat-stroked-button color="basic" (click)="openDialog()">Crear Finca</button>
 <div class="card" *ngFor="let finca of fincas">
-    <mat-card (click)="detailState(finca.idCatastral)" class="finca">
+    <mat-card (click)="detailState(finca.idCatastral)" class="finca" style="cursor: pointer">
         <h1 class="card-title">{{ finca.nombreFinca }}</h1>
         <p class="card-text">Dirección: {{ finca.direccionFinca }}</p>
         <p class="card-text">Observaciones: {{ finca.observaciones }}</p>

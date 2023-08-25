@@ -4,6 +4,7 @@ import { Finca } from 'src/app/classes/finca';
 import { FincaService } from 'src/app/services/finca.service';
 import { RegistryStateComponent } from './components/registry-state/registry-state.component';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-state',
@@ -14,6 +15,18 @@ export class StateComponent {
   public fincas: any[] = [];
   public registroFinca: Finca = new Finca();
   public srcResult: any;
+
+  private toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer);
+      toast.addEventListener('mouseleave', Swal.resumeTimer);
+    },
+  });
 
   constructor(
     private fincaService: FincaService,
@@ -26,15 +39,19 @@ export class StateComponent {
   }
 
   getFincas() {
-    this.fincaService.getFincas().subscribe(
-      (res: any) => {
+    this.fincaService.getFincas().subscribe({
+      next: (res: any) => {
         this.fincas = res;
         console.log(res);
       },
-      (err: any) => {
-        console.log(err);
-      }
-    );
+      error: (error: any) => {
+        console.log(error);
+        this.toast.fire({
+          icon: 'error',
+          title: 'No existen fincas para mostrar',
+        });
+      },
+    });
   }
 
   addFinca() {

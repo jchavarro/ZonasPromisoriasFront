@@ -30,17 +30,12 @@ export class FincaService {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     });
-    return this.http
-      .post(environment.url_base + 'api/v1/finca', registroFinca, {
+    return this.http.post(
+      environment.url_base + 'api/v1/finca',
+      registroFinca,
+      {
         headers,
-      })
-      .subscribe(
-        (res: any) => {
-          console.log(res);
-        },
-        (err: any) => {
-          console.log(err);
-        }
-      );
+      }
+    );
   }
 }
