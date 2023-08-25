@@ -14,8 +14,8 @@ export class DetailstateComponent {
   private map: Map = new Map({ basemap: 'streets-vector' });
 
   private view: MapView = new MapView({
-    center: [-73.1333333, 3.1586259],
-    zoom: 7,
+    center: [-75.606005, 4.742948],
+    zoom: 11,
     map: this.map,
   });
 

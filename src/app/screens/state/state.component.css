@@ -1,5 +1,22 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("/assets/fondoRegistro.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: hidden; */
+}
+
 .card {
-    margin: 30px 30px 30px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .finca:hover {
@@ -7,24 +24,19 @@
 }
 
 .finca {
-    padding: 2rem;
     display: flex;
     max-width: 20rem;
     transition: all 0.2s;
     position: relative;
-    cursor: pointer;
     background: rgba(78, 73, 73, 0.05);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
-}
-
-.example-full-width {
-    width: 100%;
-    margin-top: 10px;
-}
-
-.parent {
-    display: grid;
-    place-items: center;
+    color: white;
+    margin: 2rem 3rem;
+    padding: 2rem;
+    backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.45);
+    border-radius: 12px;
+    flex-direction: column;
 }
 
 .btn-finca {
