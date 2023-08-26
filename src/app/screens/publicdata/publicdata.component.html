@@ -34,7 +34,7 @@
         <td mat-cell *matCellDef="let control">{{ control.elementoNa }}</td>
       </ng-container>
       <ng-container matColumnDef="elementoP">
-        <th mat-header-cell *matHeaderCellDef>Elemento Fosforo</th>
+        <th mat-header-cell *matHeaderCellDef>Elemento Fósforo</th>
         <td mat-cell *matCellDef="let control">{{ control.elementoP }}</td>
       </ng-container>
 
@@ -82,13 +82,13 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumnsClima"></tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+    <mat-paginator *ngIf="listaControlClima" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
     </mat-paginator>
   </div>
 
   <div class="tabla">
     <h2>Datos publicos del control de la calidad del fruto</h2>
-    <table mat-table [dataSource]="listaControlClima">
+    <table mat-table [dataSource]="listaControlFruto">
       <!-- Position Column -->
       <ng-container matColumnDef="fecha">
         <th mat-header-cell *matHeaderCellDef>Fecha</th>
@@ -121,7 +121,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumnsFruto"></tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+    <mat-paginator *ngIf="listaControlFruto" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
     </mat-paginator>
   </div>
 </div>

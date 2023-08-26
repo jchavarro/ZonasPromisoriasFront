@@ -61,6 +61,8 @@ export class PublicdataComponent {
           response
         );
         this.listaControlFruto.paginator = this.paginator;
+
+        this.paginator._intl.itemsPerPageLabel = 'items por pagina';
       },
       (error) => {
         console.log(error);
@@ -75,6 +77,8 @@ export class PublicdataComponent {
           response
         );
         this.listaControlClima.paginator = this.paginator;
+
+        this.paginator._intl.itemsPerPageLabel = 'items por pagina';
       },
       (error) => {
         console.log(error);
@@ -89,6 +93,8 @@ export class PublicdataComponent {
           response
         );
         this.listaControlSuelo.paginator = this.paginator;
+
+        this.paginator._intl.itemsPerPageLabel = 'items por pagina';
       },
       (error) => {
         console.log(error);
