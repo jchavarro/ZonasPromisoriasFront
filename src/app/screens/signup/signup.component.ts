@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Productor } from 'src/app/classes/productor';
 import { ProductorService } from 'src/app/services/productor.service';
@@ -10,8 +11,18 @@ import Swal from 'sweetalert2';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent {
-  public productor: Productor = new Productor();
   public hide: Boolean = true;
+
+  public form = new FormGroup({
+    nombreProductor: new FormControl('', Validators.required),
+    apellidosProductor: new FormControl(''),
+    nitProductor: new FormControl('', Validators.required),
+    direccionProductor: new FormControl(''),
+    telefonoProductor: new FormControl(''),
+    observacionesProductor: new FormControl(''),
+    nombreUsuario: new FormControl('', Validators.required),
+    contrasena: new FormControl('', Validators.required),
+  });
 
   private toast = Swal.mixin({
     toast: true,
@@ -33,7 +44,11 @@ export class SignupComponent {
   ngOnInit(): void {}
 
   registro() {
-    this.productorService.registro(this.productor).subscribe({
+    this.form.markAllAsTouched();
+    if (this.form.invalid) {
+      return;
+    }
+    this.productorService.registro(this.form.value as Productor).subscribe({
       next: (response: any) => {
         this.toast.fire({
           icon: 'success',
@@ -44,7 +59,7 @@ export class SignupComponent {
       error: (error) => {
         this.toast.fire({
           icon: 'error',
-          title: 'Error al registrar productor',
+          title: error.error.mensaje,
         });
       },
     });

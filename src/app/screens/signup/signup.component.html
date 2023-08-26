@@ -2,55 +2,59 @@
   <div class="card">
     <h1 class="title">Bienvenido al sistema de Zonas Promisorias</h1>
     <h2>Registro de productor</h2>
-    <div class="form">
+    <form [formGroup]="form" class="form">
       <mat-form-field class="example-full-width">
         <mat-label>Nombres del productor</mat-label>
-        <input matInput placeholder="Ej. Juan Jose" [(ngModel)]="productor.nombreProductor" />
+        <input matInput placeholder="Ej. Juan Jose" formControlName="nombreProductor" />
+        <mat-error *ngIf="form.controls.nombreProductor.hasError('required')">Este campo es requerido</mat-error>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Apellidos del productor</mat-label>
-        <input matInput placeholder="Ej. Perez Perez" [(ngModel)]="productor.apellidosProductor" />
+        <input matInput placeholder="Ej. Perez Perez" formControlName="apellidosProductor" />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Nit de productor</mat-label>
-        <input matInput placeholder="Sin dígito de verificación" [(ngModel)]="productor.nitProductor" />
+        <input matInput placeholder="Sin dígito de verificación" formControlName="nitProductor" />
+        <mat-error *ngIf="form.controls.nitProductor.hasError('required')">Este campo es requerido</mat-error>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Dirección del productor</mat-label>
         <input matInput placeholder="calle ____ vereda ____ municipio ____ departamento ____"
-          [(ngModel)]="productor.direccionProductor" />
+          formControlName="direccionProductor" />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Telefono del productor</mat-label>
         <span matPrefix class="prefijo">+57 &nbsp;</span>
-        <input type="tel" matInput placeholder="333-333-3333" [(ngModel)]="productor.telefonoProductor" />
+        <input type="tel" matInput placeholder="333-333-3333" formControlName="telefonoProductor" />
         <i class="fi" class="fi-rs-phone-call"></i>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Observaciones</mat-label>
-        <textarea matInput [(ngModel)]="productor.observacionesProductor"></textarea>
+        <textarea matInput formControlName="observacionesProductor"></textarea>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Nombre de Usuario</mat-label>
-        <input matInput type="text" [(ngModel)]="productor.nombreUsuario" />
+        <input matInput type="text" formControlName="nombreUsuario" />
+        <mat-error *ngIf="form.controls.nombreUsuario.hasError('required')">Este campo es requerido</mat-error>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Contraseña</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="productor.contrasena" />
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="contrasena" />
+        <mat-error *ngIf="form.controls.contrasena.hasError('required')">Este campo es requerido</mat-error>
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
           [attr.aria-pressed]="hide">
           <i class="fi" [ngClass]="hide ? 'fi-rr-eye-crossed' : 'fi-rr-eye'"></i>
         </button>
       </mat-form-field>
 
-    </div>
+    </form>
     <button class="bnt" mat-raised-button color="primary" (click)="registro()">
       Registrar
     </button>
