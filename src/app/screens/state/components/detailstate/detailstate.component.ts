@@ -3,6 +3,10 @@ import Map from '@arcgis/core/Map';
 import MapView from '@arcgis/core/views/MapView';
 import Graphic from '@arcgis/core/Graphic.js';
 import Point from '@arcgis/core/geometry/Point';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, switchMap } from 'rxjs';
+import { Finca } from 'src/app/classes/finca';
+import { FincaService } from 'src/app/services/finca.service';
 
 @Component({
   selector: 'app-detailstate',
@@ -19,12 +23,31 @@ export class DetailstateComponent {
     map: this.map,
   });
 
+  idState!: number;
+
   ngOnInit(): void {
     this.view.container = this.mapViewEl.nativeElement;
     this.agregarPunto();
+    this.idState = Number(this.route.snapshot.paramMap.get('id'));
+    this.getFinca();
   }
 
-  constructor() {}
+  constructor(
+    private route: ActivatedRoute,
+    private service: FincaService,
+    private readonly router: Router
+  ) {}
+
+  getFinca(): void {
+    this.service.getFinca(this.idState).subscribe({
+      next: (res: any) => {
+        console.log(res);
+      },
+      error: (error: any) => {
+        this.router.navigate(['/finca']);
+      },
+    });
+  }
 
   agregarPunto() {
     // First create a point geometry

@@ -81,6 +81,6 @@ export class StateComponent {
   }
 
   detailState(idCatastral: number) {
-    this.router.navigate(['detalle']);
+    this.router.navigate([`finca/detalle`, { id: idCatastral }]);
   }
 }
