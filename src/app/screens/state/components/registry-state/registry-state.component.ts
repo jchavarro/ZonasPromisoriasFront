@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Finca } from 'src/app/classes/finca';
+import { FincaRequest } from 'src/app/classes/finca-request';
 import { FincaService } from 'src/app/services/finca.service';
 import Swal from 'sweetalert2';
 
@@ -10,8 +12,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./registry-state.component.css'],
 })
 export class RegistryStateComponent {
-  public registroFinca: Finca = new Finca();
+  public registroFinca: FincaRequest = new FincaRequest();
   public srcResult: any;
+  public selectedFile: File | null = null;
 
   private toast = Swal.mixin({
     toast: true,
@@ -25,42 +28,40 @@ export class RegistryStateComponent {
     },
   });
 
-  constructor(private fincaService: FincaService, private router: Router) {}
+  constructor(
+    private fincaService: FincaService,
+    private router: Router,
+    private dialogRef: MatDialogRef<RegistryStateComponent>
+  ) {}
 
   ngOnInit() {}
 
-  addFinca() {
-    this.fincaService.addFinca(this.registroFinca).subscribe({
-      next: (response: any) => {
-        this.toast.fire({
-          icon: 'success',
-          title: 'Registro de finca exitoso',
-        });
-        console.log(response);
-      },
-      error: (error: any) => {
-        console.log(error);
-        this.toast.fire({
-          icon: 'error',
-          title: 'Registro de finca fallido',
-        });
-      },
-    });
-    this.registroFinca = new Finca();
-    this.router.navigate(['/finca']);
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
   }
 
-  onFileSelected() {
-    const inputNode: any = document.querySelector('#file');
-
-    if (typeof FileReader !== 'undefined') {
-      const reader = new FileReader();
-
-      reader.onload = (e: any) => {
-        this.srcResult = e.target.result;
-      };
-      console.log(inputNode.files[0]);
-      reader.readAsArrayBuffer(inputNode.files[0]);
-    }
+  addFinca() {
+    this.fincaService
+      .addFinca(this.registroFinca, this.selectedFile)
+      .subscribe({
+        next: (response: any) => {
+          this.toast.fire({
+            icon: 'success',
+            title: 'Registro de finca exitoso',
+          });
+          this.registroFinca = new Finca();
+          console.log(response);
+          this.dialogRef.close(true);
+        },
+        error: (error: any) => {
+          console.log(error);
+          this.toast.fire({
+            icon: 'error',
+            title: 'Registro de finca fallido',
+          });
+          this.dialogRef.close(false);
+        },
+      });
+    this.router.navigate(['/finca']);
   }
 }

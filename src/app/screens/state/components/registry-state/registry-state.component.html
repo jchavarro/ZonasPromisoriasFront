@@ -35,10 +35,11 @@
                 <textarea matInput [(ngModel)]="registroFinca.observacionesFinca"></textarea>
             </mat-form-field>
 
-            <button mat-raised-button color="white" (click)="fileInput.click()">
+            <!-- <button mat-raised-button color="white" (click)="fileInput.click()">
                 Choose File
             </button>
-            <input hidden (change)="onFileSelected()" #fileInput type="file" id="file" />
+            <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file" /> -->
+            <input type="file" (change)="onFileSelected($event)" accept="image/*" />
         </section>
         <button class="btn" mat-raised-button color="primary" (click)="addFinca()">
             Registrar Finca

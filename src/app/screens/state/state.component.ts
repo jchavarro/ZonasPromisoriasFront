@@ -54,10 +54,13 @@ export class StateComponent {
     });
   }
 
-  addFinca() {
-    this.fincaService.addFinca(this.registroFinca);
-    this.registroFinca = new Finca();
+  dataUrl(tipoImagen: any, datos: any): string {
+    if (!!datos) {
+      return 'data:' + tipoImagen + ';base64,' + datos;
+    }
+    return '/assets/noimage.jpg';
   }
+
   onFileSelected() {
     const inputNode: any = document.querySelector('#file');
 
@@ -76,11 +79,32 @@ export class StateComponent {
     const dialogRef = this.dialog.open(RegistryStateComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
+      if (result) {
+        this.getFincas();
+      }
     });
   }
 
   detailState(idCatastral: number) {
     this.router.navigate([`finca/detalle`, { id: idCatastral }]);
+  }
+
+  borrarFinca(idCatastral: number) {
+    this.fincaService.deleteFinca(idCatastral).subscribe({
+      next: (res: any) => {
+        this.toast.fire({
+          icon: 'success',
+          title: 'Finca eliminada exitosamente',
+        });
+        this.getFincas();
+      },
+      error: (error: any) => {
+        console.log(error);
+        this.toast.fire({
+          icon: 'error',
+          title: 'No se pudo eliminar la finca',
+        });
+      },
+    });
   }
 }

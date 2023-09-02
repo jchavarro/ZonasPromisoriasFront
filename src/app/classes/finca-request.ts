@@ -1,14 +1,12 @@
 import { Productor } from './productor';
 
-export class Finca {
+export class FincaRequest {
   idCatastral?: number;
   nombreFinca?: number;
   ubicacionFinca?: string;
   direccionFinca?: string;
   hectareasFinca?: string;
-  nombreImagen?: string;
-  tipoImagen?: string;
-  datosImagenFinca?: string;
+  imagen?: FormData;
   observacionesFinca?: string;
   productor?: Productor;
 }

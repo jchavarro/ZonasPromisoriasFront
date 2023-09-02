@@ -34,20 +34,40 @@ export class FincaService {
     );
   }
 
-  addFinca(registroFinca: Finca) {
+  addFinca(registroFinca: Finca, imagenFinca: any) {
     const nitProductor = localStorage.getItem('user_id');
     const productor: Productor = new Productor();
     productor.nitProductor = Number(nitProductor);
     registroFinca.productor = productor;
+
+    const registroFincaJSON = new Blob([JSON.stringify(registroFinca)], {
+      type: 'application/json',
+    });
+
+    const formDataFinca: FormData = new FormData();
+    formDataFinca.append('finca', registroFincaJSON);
+    formDataFinca.append('imagenFinca', imagenFinca);
+
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     });
+
     return this.http.post(
       environment.url_base + 'api/v1/finca',
-      registroFinca,
+      formDataFinca,
       {
         headers,
       }
+    );
+  }
+
+  deleteFinca(id: number) {
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    });
+    return this.http.delete(
+      environment.url_base + 'api/v1/finca?idcatastral=' + id,
+      { headers }
     );
   }
 }
