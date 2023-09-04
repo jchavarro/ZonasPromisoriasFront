@@ -24,6 +24,7 @@ export class DetailstateComponent {
   });
 
   idState!: number;
+  finca: Finca = new Finca();
 
   ngOnInit(): void {
     this.view.container = this.mapViewEl.nativeElement;
@@ -41,6 +42,7 @@ export class DetailstateComponent {
   getFinca(): void {
     this.service.getFinca(this.idState).subscribe({
       next: (res: any) => {
+        this.finca = res;
         console.log(res);
       },
       error: (error: any) => {

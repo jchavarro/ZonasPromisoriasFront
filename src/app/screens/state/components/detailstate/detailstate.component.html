@@ -2,5 +2,45 @@
     <span class="titulo">
         <h1>Detalle de la información geográfica de la finca</h1>
     </span>
-    <div id="map" #mapViewNode></div>
+    <div class="mapinfo">
+        <div id="map" #mapViewNode></div>
+        <article class="info">
+            <p>
+                <span>
+                    <b>Nombre de la finca: </b>
+                    {{finca.nombreFinca}}
+                </span>
+            </p>
+            <p>
+                <span>
+                    <b>Identificación catastral: </b>
+                    {{finca.idCatastral}}
+                </span>
+            </p>
+            <p>
+                <span>
+                    <b>Dirección de la finca: </b>
+                    {{finca.direccionFinca}}
+                </span>
+            </p>
+            <p>
+                <span>
+                    <b>Numero de hectareas de la finca: </b>
+                    {{finca.hectareasFinca}}
+                </span>
+            </p>
+            <p>
+                <span>
+                    <b>Observaciones de la finca: </b>
+                    {{finca.observacionesFinca}}
+                </span>
+            </p>
+            <p>
+                <span>
+                    <b>Nombre del productor: </b>
+                    {{finca.productor?.nombreProductor}}
+                </span>
+            </p>
+        </article>
+    </div>
 </div>
