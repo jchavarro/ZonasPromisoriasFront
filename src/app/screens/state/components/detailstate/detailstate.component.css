@@ -21,17 +21,12 @@
 }
 
 .mapinfo {
+    height: 40rem;
     display: flex;
-    max-width: 100%;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
     gap: 1rem;
-    margin-top: 1rem;
-    padding: 1rem;
 }
 
 #map {
-    flex: 2 1 auto;
     margin: 10px auto;
     padding: 10px;
     border-radius: 10px;
@@ -42,12 +37,34 @@
 }
 
 .info {
-    flex: 1 1 auto;
+    height: auto;
     margin: 10px auto;
     padding: 10px;
     border-radius: 10px;
     background-color: #ffffff;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
-    height: 40rem;
-    justify-self: center;
+}
+
+@media (max-width: 998px) {
+    .mapinfo {
+        flex-direction: column;
+    }
+    .map {
+        max-width: 100%;
+    }
+    .info {
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 998px) {
+    .mapinfo {
+        flex-direction: row;
+    }
+    .map {
+        min-width: 550px;
+    }
+    .info {
+        min-width: 550px;
+    }
 }
