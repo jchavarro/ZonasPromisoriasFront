@@ -21,7 +21,7 @@
 }
 
 .mapinfo {
-    height: 40rem;
+    height: auto;
     display: flex;
     gap: 1rem;
 }
@@ -37,7 +37,8 @@
 }
 
 .info {
-    height: auto;
+    height: 40rem;
+    width: auto;
     margin: 10px auto;
     padding: 10px;
     border-radius: 10px;
@@ -49,7 +50,7 @@
     .mapinfo {
         flex-direction: column;
     }
-    .map {
+    #map {
         max-width: 100%;
     }
     .info {
@@ -61,10 +62,30 @@
     .mapinfo {
         flex-direction: row;
     }
-    .map {
+    #map {
         min-width: 550px;
     }
     .info {
-        min-width: 550px;
+        min-width: 400px;
     }
+}
+
+.info-item {
+    margin: 0 0 1rem 0;
+    display: flex;
+    flex-flow: column nowrap;
+    span:first-child {
+        font-weight: 500;
+        font-size: 12px;
+        color: #4F4F4F;
+    }
+}
+
+.tabla {
+    margin: 2rem 3rem;
+    width: 80%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }

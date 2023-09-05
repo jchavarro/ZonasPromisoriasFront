@@ -4,6 +4,7 @@ import { environment } from 'src/app/environments/environment';
 import { Finca } from 'src/app/classes/finca';
 import { Productor } from 'src/app/classes/productor';
 import { Observable } from 'rxjs';
+import { Coordenadas } from '../classes/coordenadas';
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +31,16 @@ export class FincaService {
       environment.url_base +
         'api/v1/finca/all?idproductor=' +
         localStorage.getItem('user_id'),
+      { headers }
+    );
+  }
+
+  getCoordenadas(id: number): Observable<any> {
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    });
+    return this.http.get(
+      environment.url_base + 'api/v1/coordenadas/finca?idcatastral=' + id,
       { headers }
     );
   }

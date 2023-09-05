@@ -11,10 +11,14 @@ import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RegistryStateComponent } from './components/registry-state/registry-state.component';
 import { DetailstateComponent } from './components/detailstate/detailstate.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [StateComponent, RegistryStateComponent, DetailstateComponent],
   imports: [
+    MatPaginatorModule,
+    MatTableModule,
     MatDialogModule,
     CommonModule,
     MatFormFieldModule,

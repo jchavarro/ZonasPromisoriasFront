@@ -5,42 +5,176 @@
     <div class="mapinfo">
         <div id="map" #mapViewNode></div>
         <article class="info">
-            <p>
+            <p class="info-item">
                 <span>
-                    <b>Nombre de la finca: </b>
+                    Nombre de la finca:
+                </span>
+                <span>
                     {{finca.nombreFinca}}
                 </span>
             </p>
-            <p>
+            <p class="info-item">
                 <span>
-                    <b>Identificación catastral: </b>
+                    Identificación catastral:
+                </span>
+                <span>
                     {{finca.idCatastral}}
                 </span>
             </p>
-            <p>
+            <p class="info-item">
                 <span>
-                    <b>Dirección de la finca: </b>
+                    Dirección de la finca:
+                </span>
+                <span>
                     {{finca.direccionFinca}}
                 </span>
             </p>
-            <p>
+            <p class="info-item">
                 <span>
-                    <b>Numero de hectareas de la finca: </b>
+                    Numero de hectareas de la finca:
+                </span>
+                <span>
                     {{finca.hectareasFinca}}
                 </span>
             </p>
-            <p>
+            <p class="info-item">
                 <span>
-                    <b>Observaciones de la finca: </b>
+                    Observaciones de la finca:
+                </span>
+                <span>
                     {{finca.observacionesFinca}}
                 </span>
             </p>
-            <p>
+            <p class="info-item">
                 <span>
-                    <b>Nombre del productor: </b>
+                    Nombre del productor:
+                </span>
+                <span>
                     {{finca.productor?.nombreProductor}}
                 </span>
             </p>
         </article>
+    </div>
+    <div class="tabla">
+        <h2>Datos publicos del control del suelo</h2>
+        <table mat-table [dataSource]="listaControlSuelo">
+            <ng-container matColumnDef="fecha">
+                <th mat-header-cell *matHeaderCellDef>Fecha</th>
+                <td mat-cell *matCellDef="let control">{{ control.fecha }}</td>
+            </ng-container>
+            <ng-container matColumnDef="medidaPh">
+                <th mat-header-cell *matHeaderCellDef>Medida de pH</th>
+                <td mat-cell *matCellDef="let control">{{ control.medidaPh }}</td>
+            </ng-container>
+            <ng-container matColumnDef="materiaOrganica">
+                <th mat-header-cell *matHeaderCellDef>Materia Orgánica</th>
+                <td mat-cell *matCellDef="let control">{{ control.materiaOrganica }}</td>
+            </ng-container>
+            <ng-container matColumnDef="elementoK">
+                <th mat-header-cell *matHeaderCellDef>Elemento Potasio</th>
+                <td mat-cell *matCellDef="let control">{{ control.elementoK }}</td>
+            </ng-container>
+            <ng-container matColumnDef="elementoCa">
+                <th mat-header-cell *matHeaderCellDef>Elemento Calcio</th>
+                <td mat-cell *matCellDef="let control">{{ control.elementoCa }}</td>
+            </ng-container>
+            <ng-container matColumnDef="elementoMg">
+                <th mat-header-cell *matHeaderCellDef>Elemento Magnesio</th>
+                <td mat-cell *matCellDef="let control">{{ control.elementoMg }}</td>
+            </ng-container>
+            <ng-container matColumnDef="elementoNa">
+                <th mat-header-cell *matHeaderCellDef>Elemento Sodio</th>
+                <td mat-cell *matCellDef="let control">{{ control.elementoNa }}</td>
+            </ng-container>
+            <ng-container matColumnDef="elementoP">
+                <th mat-header-cell *matHeaderCellDef>Elemento Fósforo</th>
+                <td mat-cell *matCellDef="let control">{{ control.elementoP }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsSuelo"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsSuelo"></tr>
+        </table>
+
+        <mat-paginator *ngIf="listaControlSuelo" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+        </mat-paginator>
+    </div>
+
+    <div class="tabla">
+        <h2>Datos publicos del control del clima</h2>
+        <table mat-table [dataSource]="listaControlClima">
+            <ng-container matColumnDef="fecha">
+                <th mat-header-cell *matHeaderCellDef>Fecha</th>
+                <td mat-cell *matCellDef="let control">{{ control.fecha }}</td>
+            </ng-container>
+            <ng-container matColumnDef="temperatura">
+                <th mat-header-cell *matHeaderCellDef>Temperatura</th>
+                <td mat-cell *matCellDef="let control">{{ control.temperatura }}</td>
+            </ng-container>
+            <ng-container matColumnDef="humedadRelativa">
+                <th mat-header-cell *matHeaderCellDef>Humedad Relativa</th>
+                <td mat-cell *matCellDef="let control">{{ control.humedadRelativa }}</td>
+            </ng-container>
+            <ng-container matColumnDef="precipitacion">
+                <th mat-header-cell *matHeaderCellDef>Precipitación</th>
+                <td mat-cell *matCellDef="let control">{{ control.precipitacion }}</td>
+            </ng-container>
+            <ng-container matColumnDef="radiacionSolar">
+                <th mat-header-cell *matHeaderCellDef>Radiación Solar</th>
+                <td mat-cell *matCellDef="let control">{{ control.radiacionSolar }}</td>
+            </ng-container>
+            <ng-container matColumnDef="direccionViento">
+                <th mat-header-cell *matHeaderCellDef>Dirección Del Viento</th>
+                <td mat-cell *matCellDef="let control">{{ control.direccionViento }}</td>
+            </ng-container>
+            <ng-container matColumnDef="velocidadViento">
+                <th mat-header-cell *matHeaderCellDef>Velocidad Del Viento</th>
+                <td mat-cell *matCellDef="let control">{{ control.velocidadViento }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsClima"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsClima"></tr>
+        </table>
+
+        <mat-paginator *ngIf="listaControlClima" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+        </mat-paginator>
+    </div>
+
+    <div class="tabla">
+        <h2>Datos publicos del control de la calidad del fruto</h2>
+        <table mat-table [dataSource]="listaControlFruto">
+            <!-- Position Column -->
+            <ng-container matColumnDef="fecha">
+                <th mat-header-cell *matHeaderCellDef>Fecha</th>
+                <td mat-cell *matCellDef="let control">{{ control.fecha }}</td>
+            </ng-container>
+            <ng-container matColumnDef="tamano">
+                <th mat-header-cell *matHeaderCellDef>Tamaño</th>
+                <td mat-cell *matCellDef="let control">{{ control.tamano }}</td>
+            </ng-container>
+            <ng-container matColumnDef="perfilesAcidosGrasos">
+                <th mat-header-cell *matHeaderCellDef>Perfiles de Acidos Grasos</th>
+                <td mat-cell *matCellDef="let control">
+                    {{ control.perfilesAcidosGrasos }}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="materiaSeca">
+                <th mat-header-cell *matHeaderCellDef>Materia Seca</th>
+                <td mat-cell *matCellDef="let control">{{ control.materiaSeca }}</td>
+            </ng-container>
+            <ng-container matColumnDef="contenidoHumedad">
+                <th mat-header-cell *matHeaderCellDef>Contenido de Humedad</th>
+                <td mat-cell *matCellDef="let control">{{ control.contenidoHumedad }}</td>
+            </ng-container>
+            <ng-container matColumnDef="elementoCa">
+                <th mat-header-cell *matHeaderCellDef>Elemento Calcio</th>
+                <td mat-cell *matCellDef="let control">{{ control.elementoCa }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsFruto"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsFruto"></tr>
+        </table>
+
+        <mat-paginator *ngIf="listaControlFruto" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+        </mat-paginator>
     </div>
 </div>
