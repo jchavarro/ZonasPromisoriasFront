@@ -4,7 +4,8 @@
         <section class="addFinca">
             <mat-form-field class="example-full-width">
                 <mat-label>Identificación catastral de la finca</mat-label>
-                <input matInput placeholder="Ejemplo: 123456789" [(ngModel)]="registroFinca.idCatastral" />
+                <input matInput placeholder="Ejemplo: 123456789" [(ngModel)]="registroFinca.idCatastral"
+                    [(ngModel)]="coordenadas.idCatastral" [(ngModel)]="lote.idCatastral" />
             </mat-form-field>
 
             <mat-form-field class="example-full-width">
@@ -35,11 +36,21 @@
                 <textarea matInput [(ngModel)]="registroFinca.observacionesFinca"></textarea>
             </mat-form-field>
 
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Coordenada: Latitud</mat-label>
+                <textarea matInput [(ngModel)]="coordenadas.coordenadaY"></textarea>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Coordenada: Longitud</mat-label>
+                <textarea matInput [(ngModel)]="coordenadas.coordenadaX"></textarea>
+            </mat-form-field>
+
             <!-- <button mat-raised-button color="white" (click)="fileInput.click()">
                 Choose File
             </button>
             <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file" /> -->
-            <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+            <input mat-raised-button type="file" (change)="onFileSelected($event)" accept="image/*" />
         </section>
         <button class="btn" mat-raised-button color="primary" (click)="addFinca()">
             Registrar Finca

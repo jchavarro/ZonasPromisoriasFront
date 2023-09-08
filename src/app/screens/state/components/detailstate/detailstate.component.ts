@@ -24,8 +24,8 @@ export class DetailstateComponent {
   private map: Map = new Map({ basemap: 'streets-vector' });
 
   private view: MapView = new MapView({
-    center: [-75.606005, 4.742948],
-    zoom: 11,
+    center: [-75.865748, 4.942948],
+    zoom: 8,
     map: this.map,
   });
 
@@ -73,7 +73,6 @@ export class DetailstateComponent {
     this.view.container = this.mapViewEl.nativeElement;
     this.idState = Number(this.route.snapshot.paramMap.get('id'));
     this.getFinca();
-    this.getCoodenadas();
     this.agregarPunto();
     this.getListaControlSuelo();
     this.getListaControlClima();
@@ -86,6 +85,13 @@ export class DetailstateComponent {
     private readonly router: Router,
     private infoFincaService: InfoFincaService
   ) {}
+
+  dataUrl(tipoImagen: any, datos: any): string {
+    if (!!datos) {
+      return 'data:' + tipoImagen + ';base64,' + datos;
+    }
+    return '/assets/noimage.jpg';
+  }
 
   getFinca(): void {
     this.fincaService.getFinca(this.idState).subscribe({
@@ -100,33 +106,29 @@ export class DetailstateComponent {
   }
 
   agregarPunto() {
-    var point = new Point({
-      longitude: this.coordenadas[0].coordenadaX,
-      latitude: this.coordenadas[0].coordenadaY,
-    });
-
-    const markerSymbol = {
-      type: 'simple-marker', // autocasts as new SimpleMarkerSymbol()
-      color: [226, 119, 40],
-      outline: {
-        // autocasts as new SimpleLineSymbol()
-        color: [255, 255, 255],
-        width: 2,
-      },
-    };
-
-    // Create a graphic and add the geometry and symbol to it
-    const pointGraphic = new Graphic({
-      geometry: point,
-      symbol: markerSymbol,
-    });
-    this.view.graphics.add(pointGraphic);
-  }
-  getCoodenadas() {
     this.fincaService.getCoordenadas(this.idState).subscribe({
-      next: (res: any) => {
+      next: (res: Coordenadas[]) => {
         this.coordenadas = res;
         console.log(res);
+
+        var point = new Point({
+          longitude: this.coordenadas[0].coordenadaX,
+          latitude: this.coordenadas[0].coordenadaY,
+        });
+
+        const markerSymbol = {
+          type: 'simple-marker',
+          color: [50, 119, 40],
+          outline: {
+            color: [255, 255, 255],
+            width: 2,
+          },
+        };
+        const pointGraphic = new Graphic({
+          geometry: point,
+          symbol: markerSymbol,
+        });
+        this.view.graphics.add(pointGraphic);
       },
       error: (error: any) => {
         console.log(error);

@@ -5,6 +5,7 @@ import { Finca } from 'src/app/classes/finca';
 import { Productor } from 'src/app/classes/productor';
 import { Observable } from 'rxjs';
 import { Coordenadas } from '../classes/coordenadas';
+import { Lote } from '../classes/lote';
 
 @Injectable({
   providedIn: 'root',
@@ -69,6 +70,28 @@ export class FincaService {
       {
         headers,
       }
+    );
+  }
+
+  addLote(lote: Lote) {
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    });
+    return this.http.post(environment.url_base + 'api/v1/lote', lote, {
+      headers,
+    });
+  }
+
+  addCoordenadas(coordenadas: Coordenadas) {
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    });
+    const coordenadasList: Coordenadas[] = [];
+    coordenadasList.push(coordenadas);
+    return this.http.post(
+      environment.url_base + 'api/v1/coordenadas',
+      coordenadasList,
+      { headers }
     );
   }
 
