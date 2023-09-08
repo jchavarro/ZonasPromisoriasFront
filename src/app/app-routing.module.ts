@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./screens/state/state.module').then((m) => m.StateModule),
   },
+  { path: 'barra', component: NavigationBarComponent },
   { path: '**', pathMatch: 'full', redirectTo: '' },
 ];
 

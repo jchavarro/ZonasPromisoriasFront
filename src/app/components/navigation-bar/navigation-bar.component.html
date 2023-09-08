@@ -1,1 +1,28 @@
-<p>navigation-bar works!</p>
+<div class="barra">
+    <div class="logo" (click)="irHome()">
+        <img src="/assets/logo.png" alt="">
+        <a>Zonas Promisorias</a>
+    </div>
+    <div class="menu">
+        <div class="item" (click)="irDatosPublicos()">
+            <a>Datos Públicos</a>
+        </div>
+        <div class="item">
+            <a>Zonas Promisorias</a>
+        </div>
+    </div>
+    <div class="menu-log">
+        <div *ngIf="isLogin()" class="item" (click)="irLogin()">
+            <a>Iniciar sesión</a>
+        </div>
+        <div *ngIf="isLogin()" class="item" (click)="irRegistro()">
+            <a>Regístrate</a>
+        </div>
+        <div *ngIf="!isLogin()" class="item" (click)="irFincas()">
+            <a>Fincas</a>
+        </div>
+        <div *ngIf="!isLogin()" class="item" (click)="cerrarSesion()">
+            <a>Cerrar sesión</a>
+        </div>
+    </div>
+</div>

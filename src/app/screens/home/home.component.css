@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 96px);
     background-image: url("/assets/fondoInicio2.jpg");
     background-size: cover;
     background-position: center;

@@ -14,10 +14,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [AppComponent, NavigationBarComponent],
   imports: [
+    MatDialogModule,
     MatPaginatorModule,
     MatTableModule,
     HttpClientModule,
