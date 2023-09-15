@@ -56,6 +56,17 @@
             </p>
         </article>
     </div>
+    <div class="file-container">
+        <input type="file" name="file" class="file-input" id="inputGroupFile" required
+            (change)="csvImportSuelo($event)">
+        <p class="info-file">
+            <span>
+                Carga masiva de datos por archivo CSV para importar los datos de los controles del suelo de la finca
+            </span>
+        </p>
+        <button mat-raised-button color="basic" (click)="descargarFormatoSuelo()">Descargar formato de estudio
+            suelo</button>
+    </div>
     <div class="tabla">
         <h2>Datos publicos del control del suelo</h2>
         <table mat-table [dataSource]="listaControlSuelo">
@@ -91,15 +102,42 @@
                 <th mat-header-cell *matHeaderCellDef>Elemento Fósforo</th>
                 <td mat-cell *matCellDef="let control">{{ control.elementoP }}</td>
             </ng-container>
+            <ng-container matColumnDef="elementoN">
+                <th mat-header-cell *matHeaderCellDef>Elemento Nitrógeno</th>
+                <td mat-cell *matCellDef="let control">{{ control.elementoN }}</td>
+            </ng-container>
+            <ng-container matColumnDef="elementoAl">
+                <th mat-header-cell *matHeaderCellDef>Elemento Aluminio</th>
+                <td mat-cell *matCellDef="let control">{{ control.elementoAl }}</td>
+            </ng-container>
+            <ng-container matColumnDef="elementoCo">
+                <th mat-header-cell *matHeaderCellDef>Elemento Carbono Orgánico</th>
+                <td mat-cell *matCellDef="let control">{{ control.elementoCo }}</td>
+            </ng-container>
+            <ng-container matColumnDef="porcentajeMin">
+                <th mat-header-cell *matHeaderCellDef>Porcentaje Mineral</th>
+                <td mat-cell *matCellDef="let control">{{ control.porcentajeMin }}</td>
+            </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumnsSuelo"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumnsSuelo"></tr>
         </table>
 
-        <mat-paginator *ngIf="listaControlSuelo" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
         </mat-paginator>
     </div>
 
+    <div class="file-container">
+        <input type="file" name="file" class="file-input" id="inputGroupFile" required
+            (change)="csvImportClima($event)">
+        <p class="info-file">
+            <span>
+                Selecciona el archivo CSV para importar los datos de los controles del clima de la finca
+            </span>
+        </p>
+        <button mat-raised-button color="basic" (click)="descargarFormatoClima()">Descargar formato de estudio
+            clima</button>
+    </div>
     <div class="tabla">
         <h2>Datos publicos del control del clima</h2>
         <table mat-table [dataSource]="listaControlClima">
@@ -131,6 +169,14 @@
                 <th mat-header-cell *matHeaderCellDef>Velocidad Del Viento</th>
                 <td mat-cell *matCellDef="let control">{{ control.velocidadViento }}</td>
             </ng-container>
+            <ng-container matColumnDef="humedadSuelo">
+                <th mat-header-cell *matHeaderCellDef>Humedad Suelo</th>
+                <td mat-cell *matCellDef="let control">{{ control.humedadSuelo }}</td>
+            </ng-container>
+            <ng-container matColumnDef="temperaturaSuelo">
+                <th mat-header-cell *matHeaderCellDef>Temperatura Suelo</th>
+                <td mat-cell *matCellDef="let control">{{ control.temperaturaSuelo }}</td>
+            </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumnsClima"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumnsClima"></tr>
@@ -140,6 +186,18 @@
         </mat-paginator>
     </div>
 
+    <div class="file-container">
+        <input type="file" name="file" class="file-input" id="inputGroupFile" required
+            (change)="csvImportFruto($event)">
+        <label class="file-label" for="inputGroupFile">Seleccione el archivo</label>
+        <p class="info-file">
+            <span>
+                Selecciona el archivo CSV para importar los datos de los controles del fruto de la finca
+            </span>
+        </p>
+        <button mat-raised-button color="basic" (click)="descargarFormatoFruto()">Descargar formato de estudio
+            fruto</button>
+    </div>
     <div class="tabla">
         <h2>Datos publicos del control de la calidad del fruto</h2>
         <table mat-table [dataSource]="listaControlFruto">
@@ -152,12 +210,6 @@
                 <th mat-header-cell *matHeaderCellDef>Tamaño</th>
                 <td mat-cell *matCellDef="let control">{{ control.tamano }}</td>
             </ng-container>
-            <ng-container matColumnDef="perfilesAcidosGrasos">
-                <th mat-header-cell *matHeaderCellDef>Perfiles de Acidos Grasos</th>
-                <td mat-cell *matCellDef="let control">
-                    {{ control.perfilesAcidosGrasos }}
-                </td>
-            </ng-container>
             <ng-container matColumnDef="materiaSeca">
                 <th mat-header-cell *matHeaderCellDef>Materia Seca</th>
                 <td mat-cell *matCellDef="let control">{{ control.materiaSeca }}</td>
@@ -169,6 +221,11 @@
             <ng-container matColumnDef="elementoCa">
                 <th mat-header-cell *matHeaderCellDef>Elemento Calcio</th>
                 <td mat-cell *matCellDef="let control">{{ control.elementoCa }}</td>
+            </ng-container>
+            <ng-container matColumnDef="clasificacionCf">
+                <th mat-header-cell *matHeaderCellDef>Clasificacion Cf</th>
+                <td mat-cell *matCellDef="let control">{{ control.clasificacionCf }}
+                </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumnsFruto"></tr>

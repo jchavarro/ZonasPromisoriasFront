@@ -22,7 +22,7 @@
 
 .menu {
     display: flex;
-    justify-content: center;
+    justify-content: end;
     flex-direction: row;
     min-width: 30%;
     max-width: 40%;

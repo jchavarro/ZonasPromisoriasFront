@@ -37,6 +37,22 @@
         <th mat-header-cell *matHeaderCellDef>Elemento Fósforo</th>
         <td mat-cell *matCellDef="let control">{{ control.elementoP }}</td>
       </ng-container>
+      <ng-container matColumnDef="elementoN">
+        <th mat-header-cell *matHeaderCellDef>Elemento Nitrógeno</th>
+        <td mat-cell *matCellDef="let control">{{ control.elementoN }}</td>
+      </ng-container>
+      <ng-container matColumnDef="elementoAl">
+        <th mat-header-cell *matHeaderCellDef>Elemento Aluminio</th>
+        <td mat-cell *matCellDef="let control">{{ control.elementoAl }}</td>
+      </ng-container>
+      <ng-container matColumnDef="elementoCo">
+        <th mat-header-cell *matHeaderCellDef>Elemento Carbono Orgánico</th>
+        <td mat-cell *matCellDef="let control">{{ control.elementoCo }}</td>
+      </ng-container>
+      <ng-container matColumnDef="porcentajeMin">
+        <th mat-header-cell *matHeaderCellDef>Porcentaje Mineral</th>
+        <td mat-cell *matCellDef="let control">{{ control.porcentajeMin }}</td>
+      </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumnsSuelo"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumnsSuelo"></tr>
@@ -76,6 +92,14 @@
       <ng-container matColumnDef="velocidadViento">
         <th mat-header-cell *matHeaderCellDef>Velocidad Del Viento</th>
         <td mat-cell *matCellDef="let control">{{ control.velocidadViento }}</td>
+      </ng-container>
+      <ng-container matColumnDef="humedadSuelo">
+        <th mat-header-cell *matHeaderCellDef>Humedad Suelo</th>
+        <td mat-cell *matCellDef="let control">{{ control.humedadSuelo }}</td>
+      </ng-container>
+      <ng-container matColumnDef="temperaturaSuelo">
+        <th mat-header-cell *matHeaderCellDef>Temperatura Suelo</th>
+        <td mat-cell *matCellDef="let control">{{ control.temperaturaSuelo }}</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumnsClima"></tr>

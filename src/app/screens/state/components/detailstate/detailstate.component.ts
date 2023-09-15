@@ -13,6 +13,7 @@ import { ControlClima } from 'src/app/classes/control-clima';
 import { ControlSuelo } from 'src/app/classes/control-suelo';
 import { InfoFincaService } from 'src/app/services/info-finca.service';
 import { Coordenadas } from 'src/app/classes/coordenadas';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-detailstate',
@@ -33,6 +34,10 @@ export class DetailstateComponent {
 
   coordenadas: Coordenadas[] = [];
 
+  estudiosSuelo: any[] = [];
+  estudiosClima: any[] = [];
+  estudiosFruto: any[] = [];
+
   finca: Finca = new Finca();
 
   displayedColumnsSuelo: any[] = [
@@ -44,14 +49,18 @@ export class DetailstateComponent {
     'elementoMg',
     'elementoNa',
     'elementoP',
+    'elementoN',
+    'elementoAl',
+    'elementoCo',
+    'porcentajeMin',
   ];
   displayedColumnsFruto: any[] = [
     'fecha',
     'tamano',
-    'perfilesAcidosGrasos',
     'materiaSeca',
     'contenidoHumedad',
     'elementoCa',
+    'clasificacionCf',
   ];
   displayedColumnsClima: any[] = [
     'fecha',
@@ -61,8 +70,9 @@ export class DetailstateComponent {
     'radiacionSolar',
     'direccionViento',
     'velocidadViento',
+    'humedadSuelo',
+    'temperaturaSuelo',
   ];
-
   listaControlSuelo?: any;
   listaControlClima?: any;
   listaControlFruto?: any;
@@ -136,9 +146,107 @@ export class DetailstateComponent {
     });
   }
 
+  csvImportSuelo($event: any) {
+    const files = $event.target.files;
+    if (!files.length) {
+      return;
+    }
+    const file = files[0];
+    this.convertToArrayBuffer(file).then(
+      (data) => {
+        this.estudiosSuelo = data;
+        this.fincaService.addControlSuelo(this.estudiosSuelo).subscribe({
+          next: (response: any) => {
+            console.log(response);
+            this.getListaControlSuelo();
+            this.estudiosSuelo = [];
+          },
+          error: (error: any) => {
+            console.log(error);
+            this.estudiosSuelo = [];
+          },
+        });
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+  csvImportClima($event: any) {
+    const files = $event.target.files;
+    if (!files.length) {
+      return;
+    }
+    const file = files[0];
+    this.convertToArrayBuffer(file).then(
+      (data) => {
+        this.estudiosClima = data;
+        console.log(this.estudiosClima);
+        this.fincaService.addControlClima(this.estudiosClima).subscribe({
+          next: (response: any) => {
+            console.log(response);
+            this.getListaControlClima();
+            this.estudiosClima = [];
+          },
+          error: (error: any) => {
+            console.log(error);
+            this.estudiosClima = [];
+          },
+        });
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+  csvImportFruto($event: any) {
+    const files = $event.target.files;
+    if (!files.length) {
+      return;
+    }
+    const file = files[0];
+    this.convertToArrayBuffer(file).then(
+      (data) => {
+        this.estudiosFruto = data;
+        console.log(this.estudiosFruto);
+        this.fincaService.addControlFruto(this.estudiosFruto).subscribe({
+          next: (response: any) => {
+            console.log(response);
+            this.getListaControlClima();
+            this.estudiosFruto = [];
+          },
+          error: (error: any) => {
+            console.log(error);
+            this.estudiosFruto = [];
+          },
+        });
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  convertToArrayBuffer(file: File): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsArrayBuffer(file);
+      fileReader.onload = (e) => {
+        const binaryData = e.target?.result;
+        const workbook = XLSX.read(binaryData, { type: 'array' });
+        const first_sheet_name = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[first_sheet_name];
+        resolve(XLSX.utils.sheet_to_json(worksheet, { raw: true }));
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  }
+
   getListaControlFruto() {
-    this.infoFincaService.getControlFruto(this.idState).subscribe(
-      (response: any) => {
+    this.infoFincaService.getControlFruto(this.idState).subscribe({
+      next: (response: any) => {
         console.log(response);
         this.listaControlFruto = new MatTableDataSource<ControlFruto[]>(
           response
@@ -147,14 +255,14 @@ export class DetailstateComponent {
 
         this.paginator._intl.itemsPerPageLabel = 'items por pagina';
       },
-      (error) => {
+      error: (error) => {
         console.log(error);
-      }
-    );
+      },
+    });
   }
   getListaControlClima() {
-    this.infoFincaService.getControlClima(this.idState).subscribe(
-      (response: any) => {
+    this.infoFincaService.getControlClima(this.idState).subscribe({
+      next: (response: any) => {
         console.log(response);
         this.listaControlClima = new MatTableDataSource<ControlClima[]>(
           response
@@ -163,14 +271,14 @@ export class DetailstateComponent {
 
         this.paginator._intl.itemsPerPageLabel = 'items por pagina';
       },
-      (error) => {
+      error: (error: any) => {
         console.log(error);
-      }
-    );
+      },
+    });
   }
   getListaControlSuelo() {
-    this.infoFincaService.getControlSuelo(this.idState).subscribe(
-      (response: any) => {
+    this.infoFincaService.getControlSuelo(this.idState).subscribe({
+      next: (response: any) => {
         console.log(response);
         this.listaControlSuelo = new MatTableDataSource<ControlSuelo[]>(
           response
@@ -179,9 +287,33 @@ export class DetailstateComponent {
 
         this.paginator._intl.itemsPerPageLabel = 'items por pagina';
       },
-      (error) => {
+      error: (error) => {
         console.log(error);
-      }
-    );
+      },
+    });
+  }
+  descargarFormatoSuelo() {
+    const headings = this.displayedColumnsSuelo;
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet([]);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.sheet_add_aoa(ws, [headings], { origin: 'A1' });
+    XLSX.utils.book_append_sheet(wb, ws, 'Formato suelo');
+    XLSX.writeFile(wb, 'Formatosuelo.xlsx');
+  }
+  descargarFormatoClima() {
+    const headings = this.displayedColumnsClima;
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet([]);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.sheet_add_aoa(ws, [headings], { origin: 'A1' });
+    XLSX.utils.book_append_sheet(wb, ws, 'Formato clima');
+    XLSX.writeFile(wb, 'Formatoclima.xlsx');
+  }
+  descargarFormatoFruto() {
+    const headings = this.displayedColumnsFruto;
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet([]);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.sheet_add_aoa(ws, [headings], { origin: 'A1' });
+    XLSX.utils.book_append_sheet(wb, ws, 'Formato fruto');
+    XLSX.writeFile(wb, 'Formatofruto.xlsx');
   }
 }

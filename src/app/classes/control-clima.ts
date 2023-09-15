@@ -8,4 +8,6 @@ export class ControlClima {
   radiacionSolar?: number;
   direccionViento?: number;
   velocidadViento?: number;
+  humedadSuelo?: number;
+  temperaturaSuelo?: number;
 }

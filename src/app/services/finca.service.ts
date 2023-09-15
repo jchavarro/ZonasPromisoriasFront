@@ -6,6 +6,9 @@ import { Productor } from 'src/app/classes/productor';
 import { Observable } from 'rxjs';
 import { Coordenadas } from '../classes/coordenadas';
 import { Lote } from '../classes/lote';
+import { ControlSuelo } from '../classes/control-suelo';
+import { ControlClima } from '../classes/control-clima';
+import { ControlFruto } from '../classes/control-fruto';
 
 @Injectable({
   providedIn: 'root',
@@ -91,6 +94,39 @@ export class FincaService {
     return this.http.post(
       environment.url_base + 'api/v1/coordenadas',
       coordenadasList,
+      { headers }
+    );
+  }
+
+  addControlSuelo(estudiosSuelo: ControlSuelo[]) {
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    });
+    return this.http.post(
+      environment.url_base + 'api/v1/suelo',
+      estudiosSuelo,
+      { headers }
+    );
+  }
+
+  addControlClima(estudiosClima: ControlClima[]) {
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    });
+    return this.http.post(
+      environment.url_base + 'api/v1/clima',
+      estudiosClima,
+      { headers }
+    );
+  }
+
+  addControlFruto(estudiosFruto: ControlFruto[]) {
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    });
+    return this.http.post(
+      environment.url_base + 'api/v1/fruto',
+      estudiosFruto,
       { headers }
     );
   }

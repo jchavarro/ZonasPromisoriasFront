@@ -74,6 +74,9 @@
     .info {
         min-width: 550px;
     }
+    .container {
+        width: 100%;
+    }
 }
 
 .info-item {
@@ -87,8 +90,28 @@
     }
 }
 
+.file-container {
+    color: black;
+    margin: 3rem 3rem 0rem 3rem;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.info-file {
+    margin: 0.5rem;
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+}
+
 .tabla {
     margin: 2rem 3rem;
+    table-layout: fixed;
     width: 80%;
     padding: 10px;
     border-radius: 10px;

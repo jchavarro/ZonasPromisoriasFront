@@ -21,6 +21,10 @@ export class PublicdataComponent {
     'elementoMg',
     'elementoNa',
     'elementoP',
+    'elementoN',
+    'elementoAl',
+    'elementoCo',
+    'porcentajeMin',
   ];
   displayedColumnsFruto: any[] = [
     'fecha',
@@ -38,6 +42,8 @@ export class PublicdataComponent {
     'radiacionSolar',
     'direccionViento',
     'velocidadViento',
+    'humedadSuelo',
+    'temperaturaSuelo',
   ];
 
   listaControlSuelo?: any;
