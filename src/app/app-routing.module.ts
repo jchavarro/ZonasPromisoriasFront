@@ -30,6 +30,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./screens/state/state.module').then((m) => m.StateModule),
   },
+  {
+    path: 'zonas',
+    loadChildren: () =>
+      import('./screens/proareas/proareas.module').then(
+        (m) => m.ProareasModule
+      ),
+  },
   { path: 'barra', component: NavigationBarComponent },
   { path: '**', pathMatch: 'full', redirectTo: '' },
 ];

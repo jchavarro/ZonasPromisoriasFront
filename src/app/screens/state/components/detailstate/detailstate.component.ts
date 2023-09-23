@@ -14,6 +14,9 @@ import { ControlSuelo } from 'src/app/classes/control-suelo';
 import { InfoFincaService } from 'src/app/services/info-finca.service';
 import { Coordenadas } from 'src/app/classes/coordenadas';
 import * as XLSX from 'xlsx';
+import { FormControl, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
+import { DatosGrafica } from 'src/app/classes/datos-grafica';
 
 @Component({
   selector: 'app-detailstate',
@@ -21,6 +24,8 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./detailstate.component.scss'],
 })
 export class DetailstateComponent {
+  display: FormControl = new FormControl('', Validators.required);
+
   @ViewChild('mapViewNode', { static: true }) private mapViewEl!: ElementRef;
   private map: Map = new Map({ basemap: 'streets-vector' });
 
@@ -29,6 +34,47 @@ export class DetailstateComponent {
     zoom: 8,
     map: this.map,
   });
+
+  datosGraficaSuelo: DatosGrafica = {
+    labels: [],
+    datasets: [
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+    ],
+  };
+  datosGraficaClima: DatosGrafica = {
+    labels: [],
+    datasets: [
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+    ],
+  };
+  datosGraficaFruto: DatosGrafica = {
+    labels: [],
+    datasets: [
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+      { data: [], label: '', backgroundColor: this.getRandomColor() },
+    ],
+  };
+  basicOptions: any;
 
   idState!: number;
 
@@ -79,6 +125,18 @@ export class DetailstateComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  private toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer);
+      toast.addEventListener('mouseleave', Swal.resumeTimer);
+    },
+  });
+
   ngOnInit(): void {
     this.view.container = this.mapViewEl.nativeElement;
     this.idState = Number(this.route.snapshot.paramMap.get('id'));
@@ -96,6 +154,162 @@ export class DetailstateComponent {
     private infoFincaService: InfoFincaService
   ) {}
 
+  getDatosGraficaSuelo(datosSueloResponse: any) {
+    console.log(datosSueloResponse);
+    console.log(this.datosGraficaSuelo);
+
+    datosSueloResponse.forEach((element: any) => {
+      this.datosGraficaSuelo.labels.push(element.fecha);
+
+      this.datosGraficaSuelo.datasets[0].data.push(element.medidaPh);
+      this.datosGraficaSuelo.datasets[0].label = 'medidaPh';
+      this.datosGraficaSuelo.datasets[0].backgroundColor =
+        this.getRandomColor();
+
+      this.datosGraficaSuelo.datasets[1].data.push(element.materiaOrganica);
+      this.datosGraficaSuelo.datasets[1].label = 'materiaOrganica';
+      this.datosGraficaSuelo.datasets[1].backgroundColor =
+        this.getRandomColor();
+
+      this.datosGraficaSuelo.datasets[2].data.push(element.elementoK);
+      this.datosGraficaSuelo.datasets[2].label = 'elementoK';
+      this.datosGraficaSuelo.datasets[2].backgroundColor =
+        this.getRandomColor();
+
+      this.datosGraficaSuelo.datasets[3].data.push(element.elementoCa);
+      this.datosGraficaSuelo.datasets[3].label = 'ElementoCa';
+      this.datosGraficaSuelo.datasets[3].backgroundColor =
+        this.getRandomColor();
+
+      this.datosGraficaSuelo.datasets[4].data.push(element.elementoMg);
+      this.datosGraficaSuelo.datasets[4].label = 'elementoMg';
+      this.datosGraficaSuelo.datasets[4].backgroundColor =
+        this.getRandomColor();
+
+      this.datosGraficaSuelo.datasets[5].data.push(element.elementoNa);
+      this.datosGraficaSuelo.datasets[5].label = 'elementoNa';
+      this.datosGraficaSuelo.datasets[5].backgroundColor =
+        this.getRandomColor();
+
+      this.datosGraficaSuelo.datasets[6].data.push(element.elementoP);
+      this.datosGraficaSuelo.datasets[6].label = 'elementoP';
+      this.datosGraficaSuelo.datasets[6].backgroundColor =
+        this.getRandomColor();
+
+      this.datosGraficaSuelo.datasets[7].data.push(element.elementoN);
+      this.datosGraficaSuelo.datasets[7].label = 'elementoN';
+      this.datosGraficaSuelo.datasets[7].backgroundColor =
+        this.getRandomColor();
+
+      this.datosGraficaSuelo.datasets[8].data.push(element.elementoAl);
+      this.datosGraficaSuelo.datasets[8].label = 'elementoN';
+      this.datosGraficaSuelo.datasets[8].backgroundColor =
+        this.getRandomColor();
+
+      this.datosGraficaSuelo.datasets[9].data.push(element.elementoCo);
+      this.datosGraficaSuelo.datasets[9].label = 'elementoCo';
+      this.datosGraficaSuelo.datasets[9].backgroundColor =
+        this.getRandomColor();
+
+      this.datosGraficaSuelo.datasets[10].data.push(element.porcentajeMin);
+      this.datosGraficaSuelo.datasets[10].label = 'porcentajeMin';
+      this.datosGraficaSuelo.datasets[10].backgroundColor =
+        this.getRandomColor();
+    });
+  }
+
+  getDatosGraficaClima(datosClimaResponse: any) {
+    console.log(datosClimaResponse);
+    console.log(this.datosGraficaClima);
+
+    datosClimaResponse.forEach((element: any) => {
+      this.datosGraficaClima.labels.push(element.fecha);
+
+      this.datosGraficaClima.datasets[0].data.push(element.temperatura);
+      this.datosGraficaClima.datasets[0].label = 'temperatura';
+      this.datosGraficaClima.datasets[0].backgroundColor =
+        this.getRandomColor();
+
+      this.datosGraficaClima.datasets[1].data.push(element.humedadRelativa);
+      this.datosGraficaClima.datasets[1].label = 'humedadRelativa';
+      this.datosGraficaClima.datasets[1].backgroundColor =
+        this.getRandomColor();
+
+      this.datosGraficaClima.datasets[2].data.push(element.precipitacion);
+      this.datosGraficaClima.datasets[2].label = 'precipitacion';
+      this.datosGraficaClima.datasets[2].backgroundColor =
+        this.getRandomColor();
+
+      this.datosGraficaClima.datasets[3].data.push(element.radiacionSolar);
+      this.datosGraficaClima.datasets[3].label = 'radiacionSolar';
+      this.datosGraficaClima.datasets[3].backgroundColor =
+        this.getRandomColor();
+
+      this.datosGraficaClima.datasets[4].data.push(element.direccionViento);
+      this.datosGraficaClima.datasets[4].label = 'direccionViento';
+      this.datosGraficaClima.datasets[4].backgroundColor =
+        this.getRandomColor();
+
+      this.datosGraficaClima.datasets[5].data.push(element.velocidadViento);
+      this.datosGraficaClima.datasets[5].label = 'velocidadViento';
+      this.datosGraficaClima.datasets[5].backgroundColor =
+        this.getRandomColor();
+
+      this.datosGraficaClima.datasets[6].data.push(element.humedadSuelo);
+      this.datosGraficaClima.datasets[6].label = 'humedadSuelo';
+      this.datosGraficaClima.datasets[6].backgroundColor =
+        this.getRandomColor();
+
+      this.datosGraficaClima.datasets[7].data.push(element.temperaturaSuelo);
+      this.datosGraficaClima.datasets[7].label = 'temperaturaSuelo';
+      this.datosGraficaClima.datasets[7].backgroundColor =
+        this.getRandomColor();
+    });
+  }
+
+  getDatosGraficaFruto(datosFrutoResponse: any) {
+    console.log(datosFrutoResponse);
+    console.log(this.datosGraficaFruto);
+
+    datosFrutoResponse.forEach((element: any) => {
+      this.datosGraficaFruto.labels.push(element.fecha);
+
+      this.datosGraficaFruto.datasets[0].data.push(element.tamano);
+      this.datosGraficaFruto.datasets[0].label = 'tamano';
+      this.datosGraficaFruto.datasets[0].backgroundColor =
+        this.getRandomColor();
+
+      this.datosGraficaFruto.datasets[1].data.push(element.materiaSeca);
+      this.datosGraficaFruto.datasets[1].label = 'materiaSeca';
+      this.datosGraficaFruto.datasets[1].backgroundColor =
+        this.getRandomColor();
+
+      this.datosGraficaFruto.datasets[2].data.push(element.contenidoHumedad);
+      this.datosGraficaFruto.datasets[2].label = 'contenidoHumedad';
+      this.datosGraficaFruto.datasets[2].backgroundColor =
+        this.getRandomColor();
+
+      this.datosGraficaFruto.datasets[3].data.push(element.elementoCa);
+      this.datosGraficaFruto.datasets[3].label = 'elementoCa';
+      this.datosGraficaFruto.datasets[3].backgroundColor =
+        this.getRandomColor();
+
+      this.datosGraficaFruto.datasets[4].data.push(element.clasificacionCf);
+      this.datosGraficaFruto.datasets[4].label = 'clasificacionCf';
+      this.datosGraficaFruto.datasets[4].backgroundColor =
+        this.getRandomColor();
+    });
+  }
+
+  getRandomColor() {
+    let letters = '0123456789ABCDEF';
+    let color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
   dataUrl(tipoImagen: any, datos: any): string {
     if (!!datos) {
       return 'data:' + tipoImagen + ';base64,' + datos;
@@ -107,7 +321,6 @@ export class DetailstateComponent {
     this.fincaService.getFinca(this.idState).subscribe({
       next: (res: any) => {
         this.finca = res;
-        console.log(res);
       },
       error: (error: any) => {
         this.router.navigate(['/finca']);
@@ -119,7 +332,6 @@ export class DetailstateComponent {
     this.fincaService.getCoordenadas(this.idState).subscribe({
       next: (res: Coordenadas[]) => {
         this.coordenadas = res;
-        console.log(res);
 
         var point = new Point({
           longitude: this.coordenadas[0].coordenadaX,
@@ -155,13 +367,20 @@ export class DetailstateComponent {
     this.convertToArrayBuffer(file).then(
       (data) => {
         this.estudiosSuelo = data;
-        this.fincaService.addControlSuelo(this.estudiosSuelo).subscribe({
+        this.infoFincaService.addControlSuelo(this.estudiosSuelo).subscribe({
           next: (response: any) => {
-            console.log(response);
+            this.toast.fire({
+              icon: 'success',
+              title: 'Estudios agregados correctamente',
+            });
             this.getListaControlSuelo();
             this.estudiosSuelo = [];
           },
           error: (error: any) => {
+            this.toast.fire({
+              icon: 'error',
+              title: 'Error al agregar estudios',
+            });
             console.log(error);
             this.estudiosSuelo = [];
           },
@@ -182,13 +401,20 @@ export class DetailstateComponent {
       (data) => {
         this.estudiosClima = data;
         console.log(this.estudiosClima);
-        this.fincaService.addControlClima(this.estudiosClima).subscribe({
+        this.infoFincaService.addControlClima(this.estudiosClima).subscribe({
           next: (response: any) => {
-            console.log(response);
+            this.toast.fire({
+              icon: 'success',
+              title: 'Estudios agregados correctamente',
+            });
             this.getListaControlClima();
             this.estudiosClima = [];
           },
           error: (error: any) => {
+            this.toast.fire({
+              icon: 'error',
+              title: 'Error al agregar estudios',
+            });
             console.log(error);
             this.estudiosClima = [];
           },
@@ -208,14 +434,21 @@ export class DetailstateComponent {
     this.convertToArrayBuffer(file).then(
       (data) => {
         this.estudiosFruto = data;
-        console.log(this.estudiosFruto);
-        this.fincaService.addControlFruto(this.estudiosFruto).subscribe({
+        this.infoFincaService.addControlFruto(this.estudiosFruto).subscribe({
           next: (response: any) => {
+            this.toast.fire({
+              icon: 'success',
+              title: 'Estudios agregados correctamente',
+            });
             console.log(response);
             this.getListaControlClima();
             this.estudiosFruto = [];
           },
           error: (error: any) => {
+            this.toast.fire({
+              icon: 'error',
+              title: 'Error al agregar estudios',
+            });
             console.log(error);
             this.estudiosFruto = [];
           },
@@ -247,13 +480,13 @@ export class DetailstateComponent {
   getListaControlFruto() {
     this.infoFincaService.getControlFruto(this.idState).subscribe({
       next: (response: any) => {
-        console.log(response);
         this.listaControlFruto = new MatTableDataSource<ControlFruto[]>(
           response
         );
         this.listaControlFruto.paginator = this.paginator;
 
         this.paginator._intl.itemsPerPageLabel = 'items por pagina';
+        this.getDatosGraficaFruto(response);
       },
       error: (error) => {
         console.log(error);
@@ -263,13 +496,13 @@ export class DetailstateComponent {
   getListaControlClima() {
     this.infoFincaService.getControlClima(this.idState).subscribe({
       next: (response: any) => {
-        console.log(response);
         this.listaControlClima = new MatTableDataSource<ControlClima[]>(
           response
         );
         this.listaControlClima.paginator = this.paginator;
 
         this.paginator._intl.itemsPerPageLabel = 'items por pagina';
+        this.getDatosGraficaClima(response);
       },
       error: (error: any) => {
         console.log(error);
@@ -279,13 +512,12 @@ export class DetailstateComponent {
   getListaControlSuelo() {
     this.infoFincaService.getControlSuelo(this.idState).subscribe({
       next: (response: any) => {
-        console.log(response);
         this.listaControlSuelo = new MatTableDataSource<ControlSuelo[]>(
           response
         );
         this.listaControlSuelo.paginator = this.paginator;
-
         this.paginator._intl.itemsPerPageLabel = 'items por pagina';
+        this.getDatosGraficaSuelo(response);
       },
       error: (error) => {
         console.log(error);

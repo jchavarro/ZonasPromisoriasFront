@@ -17,6 +17,10 @@ export class NavigationBarComponent {
     this.router.navigate(['']);
   }
 
+  irZonas() {
+    this.router.navigate(['zonas']);
+  }
+
   irLogin() {
     this.router.navigate(['login']);
   }

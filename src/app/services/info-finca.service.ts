@@ -2,6 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
+import { ControlFruto } from '../classes/control-fruto';
+import { ControlClima } from '../classes/control-clima';
+import { ControlSuelo } from '../classes/control-suelo';
 
 @Injectable({
   providedIn: 'root',
@@ -42,6 +45,38 @@ export class InfoFincaService {
       {
         headers,
       }
+    );
+  }
+  addControlSuelo(estudiosSuelo: ControlSuelo[]) {
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    });
+    return this.http.post(
+      environment.url_base + 'api/v1/suelo',
+      estudiosSuelo,
+      { headers }
+    );
+  }
+
+  addControlClima(estudiosClima: ControlClima[]) {
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    });
+    return this.http.post(
+      environment.url_base + 'api/v1/clima',
+      estudiosClima,
+      { headers }
+    );
+  }
+
+  addControlFruto(estudiosFruto: ControlFruto[]) {
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    });
+    return this.http.post(
+      environment.url_base + 'api/v1/fruto',
+      estudiosFruto,
+      { headers }
     );
   }
 }

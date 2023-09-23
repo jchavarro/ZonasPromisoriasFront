@@ -49,6 +49,15 @@ export class FincaService {
     );
   }
 
+  getAllCoordenadas(): Observable<any> {
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    });
+    return this.http.get(environment.url_base + 'api/v1/coordenadas/all', {
+      headers,
+    });
+  }
+
   addFinca(registroFinca: Finca, imagenFinca: any) {
     const nitProductor = localStorage.getItem('user_id');
     const productor: Productor = new Productor();
@@ -94,39 +103,6 @@ export class FincaService {
     return this.http.post(
       environment.url_base + 'api/v1/coordenadas',
       coordenadasList,
-      { headers }
-    );
-  }
-
-  addControlSuelo(estudiosSuelo: ControlSuelo[]) {
-    const headers: HttpHeaders = new HttpHeaders({
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    });
-    return this.http.post(
-      environment.url_base + 'api/v1/suelo',
-      estudiosSuelo,
-      { headers }
-    );
-  }
-
-  addControlClima(estudiosClima: ControlClima[]) {
-    const headers: HttpHeaders = new HttpHeaders({
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    });
-    return this.http.post(
-      environment.url_base + 'api/v1/clima',
-      estudiosClima,
-      { headers }
-    );
-  }
-
-  addControlFruto(estudiosFruto: ControlFruto[]) {
-    const headers: HttpHeaders = new HttpHeaders({
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    });
-    return this.http.post(
-      environment.url_base + 'api/v1/fruto',
-      estudiosFruto,
       { headers }
     );
   }

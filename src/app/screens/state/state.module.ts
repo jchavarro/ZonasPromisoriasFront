@@ -13,10 +13,13 @@ import { RegistryStateComponent } from './components/registry-state/registry-sta
 import { DetailstateComponent } from './components/detailstate/detailstate.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { ChartModule } from 'primeng/chart';
+import { IaModelComponent } from './components/ia-model/ia-model.component';
 
 @NgModule({
-  declarations: [StateComponent, RegistryStateComponent, DetailstateComponent],
+  declarations: [StateComponent, RegistryStateComponent, DetailstateComponent, IaModelComponent],
   imports: [
+    ChartModule,
     MatPaginatorModule,
     MatTableModule,
     MatDialogModule,

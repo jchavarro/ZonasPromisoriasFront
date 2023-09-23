@@ -6,7 +6,8 @@
     border-radius: 10px;
     background-color: #ffffff;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
-    /* height: calc(100vh - 96px); */
+    max-width: 100%;
+    overflow: auto;
 }
 
 .container {
@@ -29,4 +30,26 @@
     -webkit-backdrop-filter: blur(16px) saturate(180%);
     background-color: rgba(17, 25, 40, 0.45);
     border-radius: 12px;
+}
+
+table {
+    width: 800px;
+}
+
+td.mat-column-star {
+    width: 20px;
+    padding-right: 8px;
+}
+
+th.mat-column-position,
+td.mat-column-position {
+    padding-left: 8px;
+}
+
+.mat-mdc-table-sticky-border-elem-right {
+    border-left: 1px solid #e0e0e0;
+}
+
+.mat-mdc-table-sticky-border-elem-left {
+    border-right: 1px solid #e0e0e0;
 }
