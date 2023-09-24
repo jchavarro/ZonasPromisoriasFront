@@ -1,3 +1,4 @@
+<button class="float" mat-raised-button (click)="openDialog()">Evaluar finca</button>
 <div class="container">
     <span class="titulo">
         <h1>Detalle de la información geográfica de la finca</h1>
@@ -5,6 +6,8 @@
     <div class="mapinfo">
         <div id="map" #mapViewNode></div>
         <article class="info">
+
+
             <img class="img" [src]="dataUrl(finca.tipoImagen, finca.datosImagenFinca)" s alt="">
             <p class="info-item">
                 <span>

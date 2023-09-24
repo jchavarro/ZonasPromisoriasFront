@@ -17,6 +17,9 @@ import * as XLSX from 'xlsx';
 import { FormControl, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { DatosGrafica } from 'src/app/classes/datos-grafica';
+import { MatDialog } from '@angular/material/dialog';
+import { IaModelComponent } from '../ia-model/ia-model.component';
+import { ModeloService } from 'src/app/services/modelo.service';
 
 @Component({
   selector: 'app-detailstate',
@@ -151,8 +154,27 @@ export class DetailstateComponent {
     private route: ActivatedRoute,
     private fincaService: FincaService,
     private readonly router: Router,
-    private infoFincaService: InfoFincaService
+    private infoFincaService: InfoFincaService,
+    private dialog: MatDialog,
+    private modeloService: ModeloService
   ) {}
+
+  openDialog() {
+    this.modeloService.getModeloSolo(this.idState).subscribe({
+      next: (response: any) => {
+        const dialogRef = this.dialog.open(IaModelComponent, {
+          data: response,
+        });
+
+        dialogRef.afterClosed().subscribe((result) => {
+          console.log(`Dialog result: ${result}`);
+        });
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+    });
+  }
 
   getDatosGraficaSuelo(datosSueloResponse: any) {
     console.log(datosSueloResponse);

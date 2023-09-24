@@ -6,9 +6,6 @@ import { Productor } from 'src/app/classes/productor';
 import { Observable } from 'rxjs';
 import { Coordenadas } from '../classes/coordenadas';
 import { Lote } from '../classes/lote';
-import { ControlSuelo } from '../classes/control-suelo';
-import { ControlClima } from '../classes/control-clima';
-import { ControlFruto } from '../classes/control-fruto';
 
 @Injectable({
   providedIn: 'root',

@@ -15,10 +15,24 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ChartModule } from 'primeng/chart';
 import { IaModelComponent } from './components/ia-model/ia-model.component';
+import { FusionChartsModule } from 'angular-fusioncharts';
+// Import FusionCharts library and chart modules
+import * as FusionCharts from 'fusioncharts';
+import * as Widgets from 'fusioncharts/fusioncharts.widgets';
 
+import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+
+// Pass the fusioncharts library and chart modules
+FusionChartsModule.fcRoot(FusionCharts, Widgets, FusionTheme);
 @NgModule({
-  declarations: [StateComponent, RegistryStateComponent, DetailstateComponent, IaModelComponent],
+  declarations: [
+    StateComponent,
+    RegistryStateComponent,
+    DetailstateComponent,
+    IaModelComponent,
+  ],
   imports: [
+    FusionChartsModule,
     ChartModule,
     MatPaginatorModule,
     MatTableModule,
