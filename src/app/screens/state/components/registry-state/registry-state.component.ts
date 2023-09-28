@@ -45,6 +45,7 @@ export class RegistryStateComponent {
   }
 
   addFinca() {
+    console.log(this.registroFinca);
     this.fincaService
       .addFinca(this.registroFinca, this.selectedFile)
       .subscribe({

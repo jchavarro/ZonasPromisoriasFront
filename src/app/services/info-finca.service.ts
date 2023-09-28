@@ -59,6 +59,7 @@ export class InfoFincaService {
   }
 
   addControlClima(estudiosClima: ControlClima[]) {
+    console.log(estudiosClima);
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     });

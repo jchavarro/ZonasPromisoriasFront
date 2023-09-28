@@ -22,7 +22,7 @@ export class IaModelComponent {
     this.dataSource = {
       chart: {
         caption: 'Puntaje del Modelo de inteligencia artificial',
-        subcaption: 'Predicción de materia seca del fruto',
+        subcaption: 'Predicción del terreno promisorio',
         lowerLimit: '0',
         upperLimit: '57',
         theme: 'fusion',

@@ -27,6 +27,14 @@
             </p>
             <p class="info-item">
                 <span>
+                    Municipio de la finca:
+                </span>
+                <span>
+                    {{finca.ubicacionFinca}}
+                </span>
+            </p>
+            <p class="info-item">
+                <span>
                     Dirección de la finca:
                 </span>
                 <span>
@@ -63,11 +71,11 @@
 
         <mat-form-field style="width: 20%;">
             <mat-label>Carga de datos</mat-label>
-            <button mat-icon-button matPrefix (click)="f_input.click()">
+            <button mat-icon-button matPrefix (click)="f_inputSuelo.click()">
                 <i class="fi fi-rs-document"></i>
             </button>
             <input type="text" readonly matInput />
-            <input type="file" multiple hidden #f_input (change)="csvImportSuelo($event)" />
+            <input type="file" multiple hidden #f_inputSuelo (change)="csvImportSuelo($event)" />
             <mat-error>this field is required</mat-error>
         </mat-form-field>
 
@@ -138,7 +146,6 @@
         <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
         </mat-paginator>
     </div>
-
     <div class="grafica">
         <h2>Graficos del estudio del suelo</h2>
         <p-chart type="bar" [data]="datosGraficaSuelo" [options]="basicOptions"></p-chart>
@@ -147,11 +154,11 @@
     <div class="file-container">
         <mat-form-field style="width: 20%;">
             <mat-label>Carga de datos</mat-label>
-            <button mat-icon-button matPrefix (click)="f_input.click()">
+            <button mat-icon-button matPrefix (click)="f_inputClima.click()">
                 <i class="fi fi-rs-document"></i>
             </button>
             <input type="text" readonly matInput />
-            <input type="file" multiple hidden #f_input (change)="csvImportClima($event)" />
+            <input type="file" multiple hidden #f_inputClima (change)="csvImportClima($event)" />
             <mat-error>this field is required</mat-error>
         </mat-form-field>
         <p class="info-file">
@@ -209,7 +216,6 @@
         <mat-paginator *ngIf="listaControlClima" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
         </mat-paginator>
     </div>
-
     <div class="grafica">
         <h2>Graficos del estudio de clima</h2>
         <p-chart type="bar" [data]="datosGraficaClima" [options]="basicOptions"></p-chart>
@@ -218,11 +224,11 @@
     <div class="file-container">
         <mat-form-field style="width: 20%;">
             <mat-label>Carga de datos</mat-label>
-            <button mat-icon-button matPrefix (click)="f_input.click()">
+            <button mat-icon-button matPrefix (click)="f_inputFruto.click()">
                 <i class="fi fi-rs-document"></i>
             </button>
             <input type="text" readonly matInput />
-            <input type="file" multiple hidden #f_input (change)="csvImportFruto($event)" />
+            <input type="file" multiple hidden #f_inputFruto (change)="csvImportFruto($event)" />
             <mat-error>this field is required</mat-error>
         </mat-form-field>
         <label class="file-label" for="inputGroupFile">Seleccione el archivo</label>
@@ -271,7 +277,6 @@
         <mat-paginator *ngIf="listaControlFruto" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
         </mat-paginator>
     </div>
-
     <div class="grafica">
         <h2>Graficos del estudio de Fruto</h2>
         <p-chart type="bar" [data]="datosGraficaFruto" [options]="basicOptions"></p-chart>

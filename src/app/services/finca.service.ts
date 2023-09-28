@@ -60,7 +60,10 @@ export class FincaService {
     const productor: Productor = new Productor();
     productor.nitProductor = Number(nitProductor);
     registroFinca.productor = productor;
-
+    if (imagenFinca == null) {
+      imagenFinca = new File([], 'nofound');
+    }
+    console.log(imagenFinca);
     const registroFincaJSON = new Blob([JSON.stringify(registroFinca)], {
       type: 'application/json',
     });

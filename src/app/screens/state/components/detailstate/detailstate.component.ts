@@ -171,6 +171,10 @@ export class DetailstateComponent {
         });
       },
       error: (error: any) => {
+        this.toast.fire({
+          icon: 'error',
+          title: 'Error al correr el modelo de IA',
+        });
         console.log(error);
       },
     });
@@ -414,6 +418,7 @@ export class DetailstateComponent {
     );
   }
   csvImportClima($event: any) {
+    console.log('entra a clima');
     const files = $event.target.files;
     if (!files.length) {
       return;
