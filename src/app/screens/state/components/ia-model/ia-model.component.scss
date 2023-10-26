@@ -1,8 +1,40 @@
-.container {
-    padding: 1rem;
-}
-
 ::ng-deep .p-element>div>canvas {
     width: 100%!important;
     height: 100%!important;
+}
+
+.convencion {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border-radius: 12px;
+}
+
+.text {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 4rem;
+    width: 100%;
+    max-width: 10rem;
+    color: white;
+    margin: 0.5rem;
+    box-sizing: border-box;
+    border-radius: 0.5rem;
+    padding: 0.2rem;
+}
+
+.bajo {
+    background-color: #F2726F;
+}
+
+.medio {
+    background-color: #FFC533;
+}
+
+.alto {
+    background-color: #62B58F;
 }

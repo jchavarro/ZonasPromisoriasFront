@@ -50,7 +50,9 @@ export class PublicdataComponent {
   listaControlClima?: any;
   listaControlFruto?: any;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild('paginatorSuelo') paginatorSuelo!: MatPaginator;
+  @ViewChild('paginatorClima') paginatorClima!: MatPaginator;
+  @ViewChild('paginatorFruto') paginatorFruto!: MatPaginator;
 
   constructor(private datosPublicosService: DatosPublicosService) {}
 
@@ -66,9 +68,9 @@ export class PublicdataComponent {
         this.listaControlFruto = new MatTableDataSource<ControlFruto[]>(
           response
         );
-        this.listaControlFruto.paginator = this.paginator;
+        this.listaControlFruto.paginator = this.paginatorFruto;
 
-        this.paginator._intl.itemsPerPageLabel = 'items por pagina';
+        this.paginatorFruto._intl.itemsPerPageLabel = 'items por pagina';
       },
       (error) => {
         console.log(error);
@@ -82,9 +84,9 @@ export class PublicdataComponent {
         this.listaControlClima = new MatTableDataSource<ControlClima[]>(
           response
         );
-        this.listaControlClima.paginator = this.paginator;
+        this.listaControlClima.paginator = this.paginatorClima;
 
-        this.paginator._intl.itemsPerPageLabel = 'items por pagina';
+        this.paginatorClima._intl.itemsPerPageLabel = 'items por pagina';
       },
       (error) => {
         console.log(error);
@@ -98,9 +100,9 @@ export class PublicdataComponent {
         this.listaControlSuelo = new MatTableDataSource<ControlSuelo[]>(
           response
         );
-        this.listaControlSuelo.paginator = this.paginator;
+        this.listaControlSuelo.paginator = this.paginatorSuelo;
 
-        this.paginator._intl.itemsPerPageLabel = 'items por pagina';
+        this.paginatorSuelo._intl.itemsPerPageLabel = 'items por pagina';
       },
       (error) => {
         console.log(error);

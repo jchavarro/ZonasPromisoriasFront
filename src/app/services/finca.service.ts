@@ -47,12 +47,7 @@ export class FincaService {
   }
 
   getAllCoordenadas(): Observable<any> {
-    const headers: HttpHeaders = new HttpHeaders({
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    });
-    return this.http.get(environment.url_base + 'api/v1/coordenadas/all', {
-      headers,
-    });
+    return this.http.get(environment.url_base + 'api/v1/coordenadas/all');
   }
 
   addFinca(registroFinca: Finca, imagenFinca: any) {

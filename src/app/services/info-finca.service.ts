@@ -24,7 +24,7 @@ export class InfoFincaService {
     );
   }
 
-  getControlClima(idcatastral: number): Observable<any> {
+  async getControlClima(idcatastral: number): Promise<Observable<any>> {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     });

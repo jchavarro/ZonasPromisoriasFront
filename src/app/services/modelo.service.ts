@@ -9,10 +9,12 @@ export class ModeloService {
   constructor(private http: HttpClient) {}
 
   getModeloTodos(): Observable<any> {
-    return this.http.get('http://127.0.0.1:5000/modelo-todos');
+    return this.http.get('http://201.131.90.170:5050/modelo-todos');
   }
 
   getModeloSolo(id: number): Observable<any> {
-    return this.http.get('http://127.0.0.1:5000/modelo-solo?finca_id=' + id);
+    return this.http.get(
+      'http://201.131.90.170:5050/modelo-solo?finca_id=' + id
+    );
   }
 }

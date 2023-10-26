@@ -1,25 +1,22 @@
 <div class="container">
-  <div class="card">
-    <h1 class="title">Bienvenido al sistema de Zonas Promisorias</h1>
-    <h2>Inicio de sesión</h2>
-    <div class="form">
-      <mat-form-field>
-        <mat-label>Ingresa tu usuario</mat-label>
-        <input type="text" matInput [(ngModel)]="usuario">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Ingresa tu contraseña</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="contrasena" />
-        <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
+    <div class="card">
+        <h1 class="title">Bienvenido al sistema de Zonas Promisorias</h1>
+        <h2>Inicio de sesión</h2>
+        <div class="form">
+            <mat-form-field>
+                <mat-label>Ingresa tu usuario</mat-label>
+                <input type="text" matInput [(ngModel)]="usuario">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Ingresa tu contraseña</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="contrasena" />
+                <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
           <i class="fi" [ngClass]="hide ? 'fi-rr-eye-crossed' : 'fi-rr-eye'"></i>
         </button>
-      </mat-form-field>
-      <button mat-raised-button (click)="onSubmit()">
+            </mat-form-field>
+            <button mat-raised-button (click)="onSubmit()">
         Ingresar
       </button>
-      <span class="text-center" (click)="irRegistro()" style="cursor: pointer">
-        ¿No tienes una cuenta? ¡Registrate aquí!
-      </span>
+        </div>
     </div>
-  </div>
 </div>

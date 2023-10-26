@@ -21,14 +21,14 @@
     place-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
     background-image: url("/assets/fondoInicioSesion.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    overflow: hidden;
+    overflow: auto!important;
 }
 
 .titulo {

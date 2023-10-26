@@ -1,4 +1,11 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import Map from '@arcgis/core/Map';
 import MapView from '@arcgis/core/views/MapView';
 import Graphic from '@arcgis/core/Graphic.js';
@@ -26,7 +33,7 @@ import { ModeloService } from 'src/app/services/modelo.service';
   templateUrl: './detailstate.component.html',
   styleUrls: ['./detailstate.component.scss'],
 })
-export class DetailstateComponent {
+export class DetailstateComponent implements OnInit {
   display: FormControl = new FormControl('', Validators.required);
 
   @ViewChild('mapViewNode', { static: true }) private mapViewEl!: ElementRef;
@@ -109,7 +116,6 @@ export class DetailstateComponent {
     'materiaSeca',
     'contenidoHumedad',
     'elementoCa',
-    'clasificacionCf',
   ];
   displayedColumnsClima: any[] = [
     'fecha',
@@ -126,7 +132,9 @@ export class DetailstateComponent {
   listaControlClima?: any;
   listaControlFruto?: any;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild('paginatorSuelo') paginatorSuelo!: MatPaginator;
+  @ViewChild('paginatorClima') paginatorClima!: MatPaginator;
+  @ViewChild('paginatorFruto') paginatorFruto!: MatPaginator;
 
   private toast = Swal.mixin({
     toast: true,
@@ -148,6 +156,7 @@ export class DetailstateComponent {
     this.getListaControlSuelo();
     this.getListaControlClima();
     this.getListaControlFruto();
+    this.cdr.detectChanges();
   }
 
   constructor(
@@ -156,7 +165,8 @@ export class DetailstateComponent {
     private readonly router: Router,
     private infoFincaService: InfoFincaService,
     private dialog: MatDialog,
-    private modeloService: ModeloService
+    private modeloService: ModeloService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   openDialog() {
@@ -242,6 +252,7 @@ export class DetailstateComponent {
       this.datosGraficaSuelo.datasets[10].backgroundColor =
         this.getRandomColor();
     });
+    this.cdr.detectChanges();
   }
 
   getDatosGraficaClima(datosClimaResponse: any) {
@@ -291,6 +302,7 @@ export class DetailstateComponent {
       this.datosGraficaClima.datasets[7].backgroundColor =
         this.getRandomColor();
     });
+    this.cdr.detectChanges();
   }
 
   getDatosGraficaFruto(datosFrutoResponse: any) {
@@ -319,12 +331,8 @@ export class DetailstateComponent {
       this.datosGraficaFruto.datasets[3].label = 'elementoCa';
       this.datosGraficaFruto.datasets[3].backgroundColor =
         this.getRandomColor();
-
-      this.datosGraficaFruto.datasets[4].data.push(element.clasificacionCf);
-      this.datosGraficaFruto.datasets[4].label = 'clasificacionCf';
-      this.datosGraficaFruto.datasets[4].backgroundColor =
-        this.getRandomColor();
     });
+    this.cdr.detectChanges();
   }
 
   getRandomColor() {
@@ -510,9 +518,9 @@ export class DetailstateComponent {
         this.listaControlFruto = new MatTableDataSource<ControlFruto[]>(
           response
         );
-        this.listaControlFruto.paginator = this.paginator;
+        this.listaControlFruto.paginator = this.paginatorFruto;
 
-        this.paginator._intl.itemsPerPageLabel = 'items por pagina';
+        this.paginatorFruto._intl.itemsPerPageLabel = 'items por pagina';
         this.getDatosGraficaFruto(response);
       },
       error: (error) => {
@@ -520,15 +528,15 @@ export class DetailstateComponent {
       },
     });
   }
-  getListaControlClima() {
-    this.infoFincaService.getControlClima(this.idState).subscribe({
+  async getListaControlClima() {
+    (await this.infoFincaService.getControlClima(this.idState)).subscribe({
       next: (response: any) => {
         this.listaControlClima = new MatTableDataSource<ControlClima[]>(
           response
         );
-        this.listaControlClima.paginator = this.paginator;
+        this.listaControlClima.paginator = this.paginatorClima;
 
-        this.paginator._intl.itemsPerPageLabel = 'items por pagina';
+        this.paginatorClima._intl.itemsPerPageLabel = 'items por pagina';
         this.getDatosGraficaClima(response);
       },
       error: (error: any) => {
@@ -542,8 +550,8 @@ export class DetailstateComponent {
         this.listaControlSuelo = new MatTableDataSource<ControlSuelo[]>(
           response
         );
-        this.listaControlSuelo.paginator = this.paginator;
-        this.paginator._intl.itemsPerPageLabel = 'items por pagina';
+        this.listaControlSuelo.paginator = this.paginatorSuelo;
+        this.paginatorSuelo._intl.itemsPerPageLabel = 'items por pagina';
         this.getDatosGraficaSuelo(response);
       },
       error: (error) => {
@@ -552,7 +560,22 @@ export class DetailstateComponent {
     });
   }
   descargarFormatoSuelo() {
-    const headings = this.displayedColumnsSuelo;
+    const headings = [
+      'idCatastral',
+      'numeroLote',
+      'fecha',
+      'medidaPh',
+      'materiaOrganica',
+      'elementoK',
+      'elementoCa',
+      'elementoMg',
+      'elementoNa',
+      'elementoP',
+      'elementoN',
+      'elementoAl',
+      'elementoCo',
+      'porcentajeMin',
+    ];
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet([]);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.sheet_add_aoa(ws, [headings], { origin: 'A1' });
@@ -560,7 +583,19 @@ export class DetailstateComponent {
     XLSX.writeFile(wb, 'Formatosuelo.xlsx');
   }
   descargarFormatoClima() {
-    const headings = this.displayedColumnsClima;
+    const headings = [
+      'idCatastral',
+      'numeroLote',
+      'fecha',
+      'temperatura',
+      'humedadRelativa',
+      'precipitacion',
+      'radiacionSolar',
+      'direccionViento',
+      'velocidadViento',
+      'humedadSuelo',
+      'temperaturaSuelo',
+    ];
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet([]);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.sheet_add_aoa(ws, [headings], { origin: 'A1' });
@@ -568,7 +603,15 @@ export class DetailstateComponent {
     XLSX.writeFile(wb, 'Formatoclima.xlsx');
   }
   descargarFormatoFruto() {
-    const headings = this.displayedColumnsFruto;
+    const headings = [
+      'idCatastral',
+      'numeroLote',
+      'fecha',
+      'tamano',
+      'materiaSeca',
+      'contenidoHumedad',
+      'elementoCa',
+    ];
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet([]);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.sheet_add_aoa(ws, [headings], { origin: 'A1' });

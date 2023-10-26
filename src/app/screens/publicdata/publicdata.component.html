@@ -58,12 +58,12 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumnsSuelo"></tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+    <mat-paginator #paginatorSuelo="matPaginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
     </mat-paginator>
   </div>
 
   <div class="tabla">
-    <h2>Datos publicos del control del clima</h2>
+    <h2>Datos publicos del control de estacion climática </h2>
     <table mat-table [dataSource]="listaControlClima">
       <ng-container matColumnDef="fecha">
         <th mat-header-cell *matHeaderCellDef>Fecha</th>
@@ -106,7 +106,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumnsClima"></tr>
     </table>
 
-    <mat-paginator *ngIf="listaControlClima" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+    <mat-paginator #paginatorClima="matPaginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
     </mat-paginator>
   </div>
 
@@ -145,7 +145,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumnsFruto"></tr>
     </table>
 
-    <mat-paginator *ngIf="listaControlFruto" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+    <mat-paginator #paginatorFruto="matPaginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
     </mat-paginator>
   </div>
 </div>
