@@ -318,57 +318,57 @@ export class DetailstateComponent implements OnInit {
       this.datosGraficaSuelo.labels.push(element.fecha);
 
       this.datosGraficaSuelo.datasets[0].data.push(element.medidaPh);
-      this.datosGraficaSuelo.datasets[0].label = 'medidaPh';
+      this.datosGraficaSuelo.datasets[0].label = 'Medida pH';
       this.datosGraficaSuelo.datasets[0].backgroundColor =
         this.getRandomColor();
 
       this.datosGraficaSuelo.datasets[1].data.push(element.materiaOrganica);
-      this.datosGraficaSuelo.datasets[1].label = 'materiaOrganica';
+      this.datosGraficaSuelo.datasets[1].label = 'Materia Orgánica - %';
       this.datosGraficaSuelo.datasets[1].backgroundColor =
         this.getRandomColor();
 
       this.datosGraficaSuelo.datasets[2].data.push(element.elementoK);
-      this.datosGraficaSuelo.datasets[2].label = 'elementoK';
+      this.datosGraficaSuelo.datasets[2].label = 'Potasio - meq/100 g';
       this.datosGraficaSuelo.datasets[2].backgroundColor =
         this.getRandomColor();
 
       this.datosGraficaSuelo.datasets[3].data.push(element.elementoCa);
-      this.datosGraficaSuelo.datasets[3].label = 'ElementoCa';
+      this.datosGraficaSuelo.datasets[3].label = 'Calcio - meq/100 g';
       this.datosGraficaSuelo.datasets[3].backgroundColor =
         this.getRandomColor();
 
       this.datosGraficaSuelo.datasets[4].data.push(element.elementoMg);
-      this.datosGraficaSuelo.datasets[4].label = 'elementoMg';
+      this.datosGraficaSuelo.datasets[4].label = 'Magnesio - meq/100 g';
       this.datosGraficaSuelo.datasets[4].backgroundColor =
         this.getRandomColor();
 
       this.datosGraficaSuelo.datasets[5].data.push(element.elementoNa);
-      this.datosGraficaSuelo.datasets[5].label = 'elementoNa';
+      this.datosGraficaSuelo.datasets[5].label = 'Sodio - meq/100 g';
       this.datosGraficaSuelo.datasets[5].backgroundColor =
         this.getRandomColor();
 
       this.datosGraficaSuelo.datasets[6].data.push(element.elementoP);
-      this.datosGraficaSuelo.datasets[6].label = 'elementoP';
+      this.datosGraficaSuelo.datasets[6].label = 'Fosforo - mg/Kg';
       this.datosGraficaSuelo.datasets[6].backgroundColor =
         this.getRandomColor();
 
       this.datosGraficaSuelo.datasets[7].data.push(element.elementoN);
-      this.datosGraficaSuelo.datasets[7].label = 'elementoN';
+      this.datosGraficaSuelo.datasets[7].label = 'Nitrógeno - %';
       this.datosGraficaSuelo.datasets[7].backgroundColor =
         this.getRandomColor();
 
       this.datosGraficaSuelo.datasets[8].data.push(element.elementoAl);
-      this.datosGraficaSuelo.datasets[8].label = 'elementoN';
+      this.datosGraficaSuelo.datasets[8].label = 'Aluminio - (meq/100 g)';
       this.datosGraficaSuelo.datasets[8].backgroundColor =
         this.getRandomColor();
 
       this.datosGraficaSuelo.datasets[9].data.push(element.elementoCo);
-      this.datosGraficaSuelo.datasets[9].label = 'elementoCo';
+      this.datosGraficaSuelo.datasets[9].label = 'Carbono Orgánico';
       this.datosGraficaSuelo.datasets[9].backgroundColor =
         this.getRandomColor();
 
       this.datosGraficaSuelo.datasets[10].data.push(element.porcentajeMin);
-      this.datosGraficaSuelo.datasets[10].label = 'porcentajeMin';
+      this.datosGraficaSuelo.datasets[10].label = 'Porcentaje Mineral - %';
       this.datosGraficaSuelo.datasets[10].backgroundColor =
         this.getRandomColor();
     });
@@ -383,22 +383,22 @@ export class DetailstateComponent implements OnInit {
       this.datosGraficaClima.labels.push(element.fecha);
 
       this.datosGraficaClima.datasets[0].data.push(element.temperatura);
-      this.datosGraficaClima.datasets[0].label = 'temperatura';
+      this.datosGraficaClima.datasets[0].label = 'Temperatura - °C';
       this.datosGraficaClima.datasets[0].backgroundColor =
         this.getRandomColor();
 
       this.datosGraficaClima.datasets[1].data.push(element.humedadRelativa);
-      this.datosGraficaClima.datasets[1].label = 'humedadRelativa';
+      this.datosGraficaClima.datasets[1].label = 'Humedad relativa - %';
       this.datosGraficaClima.datasets[1].backgroundColor =
         this.getRandomColor();
 
       this.datosGraficaClima.datasets[2].data.push(element.precipitacion);
-      this.datosGraficaClima.datasets[2].label = 'precipitacion';
+      this.datosGraficaClima.datasets[2].label = 'Precipitación - mm';
       this.datosGraficaClima.datasets[2].backgroundColor =
         this.getRandomColor();
 
       this.datosGraficaClima.datasets[3].data.push(element.radiacionSolar);
-      this.datosGraficaClima.datasets[3].label = 'radiacionSolar';
+      this.datosGraficaClima.datasets[3].label = 'Radiación solar - W/m2';
       this.datosGraficaClima.datasets[3].backgroundColor =
         this.getRandomColor();
 
@@ -408,17 +408,17 @@ export class DetailstateComponent implements OnInit {
         this.getRandomColor();
 
       this.datosGraficaClima.datasets[5].data.push(element.velocidadViento);
-      this.datosGraficaClima.datasets[5].label = 'velocidadViento';
+      this.datosGraficaClima.datasets[5].label = 'Velocidad del Viento - m/s';
       this.datosGraficaClima.datasets[5].backgroundColor =
         this.getRandomColor();
 
       this.datosGraficaClima.datasets[6].data.push(element.humedadSuelo);
-      this.datosGraficaClima.datasets[6].label = 'humedadSuelo';
+      this.datosGraficaClima.datasets[6].label = 'Humedad del Suelo - %';
       this.datosGraficaClima.datasets[6].backgroundColor =
         this.getRandomColor();
 
       this.datosGraficaClima.datasets[7].data.push(element.temperaturaSuelo);
-      this.datosGraficaClima.datasets[7].label = 'temperaturaSuelo';
+      this.datosGraficaClima.datasets[7].label = 'Temperatura del Suelo - °C';
       this.datosGraficaClima.datasets[7].backgroundColor =
         this.getRandomColor();
     });
@@ -433,22 +433,22 @@ export class DetailstateComponent implements OnInit {
       this.datosGraficaFruto.labels.push(element.fecha);
 
       this.datosGraficaFruto.datasets[0].data.push(element.tamano);
-      this.datosGraficaFruto.datasets[0].label = 'tamano';
+      this.datosGraficaFruto.datasets[0].label = 'Tamaño - gr';
       this.datosGraficaFruto.datasets[0].backgroundColor =
         this.getRandomColor();
 
       this.datosGraficaFruto.datasets[1].data.push(element.materiaSeca);
-      this.datosGraficaFruto.datasets[1].label = 'materiaSeca';
+      this.datosGraficaFruto.datasets[1].label = 'Materia Seca - %';
       this.datosGraficaFruto.datasets[1].backgroundColor =
         this.getRandomColor();
 
       this.datosGraficaFruto.datasets[2].data.push(element.contenidoHumedad);
-      this.datosGraficaFruto.datasets[2].label = 'contenidoHumedad';
+      this.datosGraficaFruto.datasets[2].label = 'Contenido de Humedad - %';
       this.datosGraficaFruto.datasets[2].backgroundColor =
         this.getRandomColor();
 
       this.datosGraficaFruto.datasets[3].data.push(element.elementoCa);
-      this.datosGraficaFruto.datasets[3].label = 'elementoCa';
+      this.datosGraficaFruto.datasets[3].label = 'Elemento Calcio - mgCa/100 g';
       this.datosGraficaFruto.datasets[3].backgroundColor =
         this.getRandomColor();
     });
